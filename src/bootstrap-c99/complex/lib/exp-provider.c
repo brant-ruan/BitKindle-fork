@@ -1,0 +1,4 @@
+#include "src/bootstrap-c99/complex/lib/basic.c"
+#include "src/bootstrap-c99/complex/lib/polar.c"
+#include "src/bootstrap-c99/complex/lib/log.c"
+#include "src/bootstrap-c99/complex/lib/exp.c"

@@ -1,0 +1,11 @@
+{
+  "ctype": "isalnum isalpha iscntrl isdigit isgraph islower isprint ispunct isspace isupper isxdigit tolower toupper",
+  "math": "acos asin atan atan2 cos sin tan cosh sinh tanh exp frexp ldexp log log10 modf pow sqrt ceil fabs floor fmod",
+  "signal": "signal raise",
+  "stdio": "remove rename tmpfile tmpnam fclose fflush fopen freopen setbuf setvbuf fprintf fscanf printf scanf sprintf sscanf vfprintf vprintf vsprintf fgetc fgets fputc fputs getc getchar gets putc putchar puts ungetc fread fwrite fgetpos fseek fsetpos ftell rewind clearerr feof ferror perror",
+  "stdlib": "atof atoi atol strtod strtol strtoul rand srand calloc free malloc realloc abort atexit exit getenv system bsearch qsort abs div labs ldiv mblen mbtowc wctomb mbstowcs wcstombs",
+  "string": "memcpy memmove strcpy strncpy strcat strncat memcmp strcmp strcoll strncmp strxfrm memchr strchr strcspn strpbrk strrchr strspn strstr strtok memset strerror strlen",
+  "time": "clock difftime mktime time asctime ctime gmtime localtime strftime",
+  "setjmp": "longjmp",
+  "locale": "setlocale localeconv"
+}

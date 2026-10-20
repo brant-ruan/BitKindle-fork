@@ -1,0 +1,106 @@
+[
+  {
+    "Name": "layout",
+    "Gate": "PASS 12 complex layout executions, ten constraint rejections and six equal pairs"
+  },
+  {
+    "Name": "conversion",
+    "Gate": "PASS 28 complex conversion executions, 8 constraint rejections and 14 equal pairs"
+  },
+  {
+    "Name": "arithmetic",
+    "Gate": "PASS 20 complex arithmetic executions, 12 constraint rejections and 10 equal pairs"
+  },
+  {
+    "Name": "static",
+    "Gate": "PASS 20 complex static executions, 8 constraint rejections and 10 equal pairs"
+  },
+  {
+    "Name": "product",
+    "Gate": "PASS 20 complex product executions, 6 constraint rejections and 10 equal pairs"
+  },
+  {
+    "Name": "division",
+    "Gate": "PASS 20 complex division executions, 4 constraint rejections and 10 equal pairs"
+  },
+  {
+    "Name": "range",
+    "Gate": "PASS 16 complex range executions, 0 constraint rejections and 8 equal pairs"
+  },
+  {
+    "Name": "axis",
+    "Gate": "PASS 16 complex axis executions, 0 constraint rejections and 8 equal pairs"
+  },
+  {
+    "Name": "constant",
+    "Gate": "PASS 20 complex constant executions, 10 constraint rejections and 10 equal pairs"
+  },
+  {
+    "Name": "unit",
+    "Gate": "PASS 22 complex unit executions, 10 constraint rejections and 11 equal pairs"
+  },
+  {
+    "Name": "cross",
+    "Gate": "PASS three cross-unit complex executions, including mixed compiler generations, two equal object pairs and equal executable pair"
+  },
+  {
+    "Name": "multiply-special",
+    "Gate": "PASS 28 complex special multiplication executions, 0 constraint rejections and 14 equal pairs"
+  },
+  {
+    "Name": "multiply-range",
+    "Gate": "PASS 12 complex finite-range multiplication executions, 0 constraint rejections and 6 equal pairs"
+  },
+  {
+    "Name": "multiply-env",
+    "Gate": "PASS three multiply-env-unit complex executions, including mixed compiler generations, two equal object pairs and equal executable pair"
+  },
+  {
+    "Name": "constant-range",
+    "Gate": "PASS 14 complex constant range executions, 4 constraint rejections and 7 equal pairs"
+  },
+  {
+    "Name": "divide-range",
+    "Gate": "PASS 16 complex division range executions, 0 constraint rejections and 8 equal pairs"
+  },
+  {
+    "Name": "divide-special",
+    "Gate": "PASS 20 complex division special executions, 0 constraint rejections and 10 equal pairs"
+  },
+  {
+    "Name": "divide-env",
+    "Gate": "PASS three divide-env-unit complex executions, including mixed compiler generations, two equal object pairs and equal executable pair"
+  },
+  {
+    "Name": "constant-divide",
+    "Gate": "PASS 22 complex constant division executions, 4 constraint rejections and 11 equal pairs"
+  },
+  {
+    "Name": "initializer-lifetime",
+    "Gate": "PASS 10 initializer lifetime executions, 4 constraint rejections and 5 equal pairs"
+  },
+  {
+    "Name": "selector",
+    "Gate": "PASS 14 generic selector executions, 10 constraint rejections and 7 equal pairs"
+  },
+  {
+    "Name": "current-fenv-access",
+    "Gate": "PASS two C99 FENV_ACCESS executions and equal object/executable pairs"
+  },
+  {
+    "Name": "current-fenv-scope",
+    "Gate": "PASS two C99 FENV_ACCESS scope executions and equal object/executable pairs"
+  },
+  {
+    "Name": "current-fp-contract",
+    "Gate": "PASS 26 noncontracted floating executions and 13 equal executable pairs"
+  },
+  {
+    "Name": "cx-pragma",
+    "Gate": "PASS three cx-pragma-unit complex executions, including mixed compiler generations, two equal object pairs and equal executable pair"
+  },
+  {
+    "Name": "hosted-clients",
+    "Gate": "PASS 48 hosted self-compiled client executions, 24 equal object pairs and 24 equal executable pairs"
+  }
+]

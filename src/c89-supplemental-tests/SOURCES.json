@@ -1,0 +1,53 @@
+[
+  {
+    "path": "audit.ps1"
+  },
+  {
+    "path": "README.zh-CN.md"
+  },
+  {
+    "path": "run.ps1"
+  },
+  {
+    "path": "templates/facts/probe.c"
+  },
+  {
+    "path": "templates/facts/test.ps1"
+  },
+  {
+    "path": "templates/headers/test.ps1"
+  },
+  {
+    "path": "templates/integers/probe.c"
+  },
+  {
+    "path": "templates/integers/test-objects.ps1"
+  },
+  {
+    "path": "templates/integers/test.ps1"
+  },
+  {
+    "path": "templates/limits/test.ps1"
+  },
+  {
+    "path": "templates/macros/cases.ps1"
+  },
+  {
+    "path": "templates/macros/test.ps1"
+  },
+  {
+    "path": "templates/multibyte/probe.c"
+  },
+  {
+    "path": "templates/multibyte/test.ps1"
+  },
+  {
+    "path": "templates/search/probe.c"
+  },
+  {
+    "path": "templates/search/test.ps1"
+  },
+  {
+    "path": "README.md"
+  }
+]

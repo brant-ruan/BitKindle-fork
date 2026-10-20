@@ -1,0 +1,21 @@
+#define handle __c1_file_handle
+#define active __c1_file_active
+#define readable __c1_file_readable
+#define writable __c1_file_writable
+#define binary __c1_file_binary
+#define append __c1_file_append
+#define eof __c1_file_eof
+#define error __c1_file_error
+#define pushed __c1_file_pushed
+#define lookahead __c1_file_lookahead
+#define buffer __c1_file_buffer
+#define capacity __c1_file_capacity
+#define readpos __c1_file_readpos
+#define readend __c1_file_readend
+#define writeused __c1_file_writeused
+#define owned __c1_file_owned
+#define buffering __c1_file_buffering
+#define direction __c1_file_direction
+#define orientation __c1_file_orientation
+#define offset __c1_file_offset
+#include "src/bootstrap-c99/components/wide-input/runtime.c"

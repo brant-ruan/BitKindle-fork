@@ -1,0 +1,1068 @@
+; Hand-authored PE32+ bytes. Comments are not input to the decoder.
+; 0000 DOS header
+4D 5A 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00 00 00 00 00 80 00 00 00
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+; 0080 PE signature, COFF header, optional header
+50 45 00 00 64 86 02 00 00 00 00 00 00 00 00 00
+00 00 00 00 F0 00 23 00 0B 02 00 00 00 60 00 00
+00 00 00 00 00 10 70 00 00 12 00 00 00 10 00 00
+00 00 40 00 00 00 00 00 00 10 00 00 00 02 00 00
+06 00 00 00 00 00 00 00 06 00 00 00 00 00 00 00
+00 10 71 00 00 02 00 00 00 00 00 00 03 00 00 01
+00 00 10 00 00 00 00 00 00 10 00 00 00 00 00 00
+00 00 10 00 00 00 00 00 00 10 00 00 00 00 00 00
+00 00 00 00 10 00 00 00 00 00 00 00 00 00 00 00
+00 10 00 00 28 00 00 00 00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00 40 10 00 00 28 00 00 00
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+; 0180 end of optional header, section table
+00 00 00 00 00 00 00 00 2E 74 65 78 74 00 00 00
+00 F0 00 00 00 10 00 00 00 60 00 00 00 02 00 00
+00 00 00 00 00 00 00 00 00 00 00 00 20 00 00 E0
+2E 62 73 73 00 00 00 00 00 10 70 00 00 00 01 00
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+00 00 00 00 80 00 00 C0 00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+^00401000
+; RVA 1000 import directory
+80 10 00 00 00 00 00 00 00 00 00 00 C0 10 00 00
+40 10 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+:iat_get
+; RVA 1040 IAT
+E0 10 00 00 00 00 00 00 F0 10 00 00 00 00 00 00
+00 11 00 00 00 00 00 00 10 11 00 00 00 00 00 00
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+; RVA 1080 ILT
+E0 10 00 00 00 00 00 00 F0 10 00 00 00 00 00 00
+00 11 00 00 00 00 00 00 10 11 00 00 00 00 00 00
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+; RVA 10C0 DLL name
+4B 45 52 4E 45 4C 33 32 2E 64 6C 6C 00 00 00 00
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+; RVA 10E0 hint/name entries
+00 00 47 65 74 53 74 64 48 61 6E 64 6C 65 00 00
+00 00 52 65 61 64 46 69 6C 65 00 00 00 00 00 00
+00 00 57 72 69 74 65 46 69 6C 65 00 00 00 00 00
+00 00 45 78 69 74 50 72 6F 63 65 73 73 00 00 00
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+
+^00401048
+:iat_read
+^00401050
+:iat_write
+^00401058
+:iat_exit
+^00401200
+
+; C0 int compiler. Internal parser convention: RBX=current token,
+; R12=input cursor, R13=end, R14=text output, RBP=global state.
+; Globals: +0 names, +4 code bytes, +8 locals, +C function,
+; +10 literal, +14 next label, +18 break, +1C continue, +20 block depth.
+:entry
+48 83 EC 38
+BD 00 00 B1 00
+B9 F6 FF FF FF FF 15 %iat_get
+49 89 C7
+BE 00 00 41 00 BF 00 00 10 00
+:read_loop
+4C 89 F9 48 89 F2 41 89 F8
+4C 8D 4C 24 28
+48 C7 44 24 20 00 00 00 00
+FF 15 %iat_read
+85 C0 0F 84 %error
+8B 44 24 28 85 C0 0F 84 %read_done
+48 01 C6 29 C7 0F 84 %error
+E9 %read_loop
+:read_done
+49 89 F5 41 BC 00 00 41 00
+41 BE 00 00 51 00
+48 8D 35 %keyword_names BF 00 00 61 00
+B9 00 0A 00 00 FC F3 A4
+C7 45 00 28 00 00 00
+C7 04 25 A8 00 A1 00 05 00 00 00
+C7 04 25 B8 00 A1 00 05 00 00 00
+C7 04 25 B4 00 A1 00 01 00 00 00
+C7 45 14 01 00 00 00
+C7 45 30 00 00 50 00
+48 8D 35 %target_prefix E8 %text
+C7 45 04 12 00 00 00
+E8 %lex
+:unit_loop
+85 DB 0F 84 %unit_done
+E8 %function E9 %unit_loop
+:unit_done
+F7 04 25 68 00 A1 00 01 00 00 00 0F 84 %error
+31 C9
+:undefined_loop
+3B 4D 00 0F 83 %unit_pad
+89 C8 C1 E0 04 8B 90 08 00 A1 00
+83 E2 03 83 FA 02 0F 84 %error
+FF C1 E9 %undefined_loop
+:unit_pad
+48 8D 35 %runtime_text BA D5 00 00 00 E8 %code
+B8 00 FE 03 00 2B 45 04 0F 82 %error
+48 8D 35 %pad_text E8 %text E8 %hex_name E8 %newline
+B9 F5 FF FF FF FF 15 %iat_get
+48 89 C1 BA 00 00 51 00 4D 89 F0 49 29 D0
+4C 8D 4C 24 28
+48 C7 44 24 20 00 00 00 00
+FF 15 %iat_write
+85 C0 0F 84 %error
+8B 44 24 28 49 81 EE 00 00 51 00
+4C 39 F0 0F 85 %error
+31 C9 FF 15 %iat_exit
+
+; Error diagnostic uses stderr; discard buffered assembly, never publish it.
+:error
+48 83 E4 F0 48 83 EC 30
+41 BE 00 00 51 00
+4C 89 E0 2D 00 00 41 00
+48 8D 35 %error_text E8 %text E8 %hex_name E8 %newline
+B9 F4 FF FF FF FF 15 %iat_get
+48 89 C1 BA 00 00 51 00 4D 89 F0 49 29 D0
+4C 8D 4C 24 28 48 C7 44 24 20 00 00 00 00
+FF 15 %iat_write
+B9 01 00 00 00 FF 15 %iat_exit
+
+; Append NUL-terminated RSI text, preserve caller scratch registers.
+:text
+50 51 52 56
+:text_loop
+8A 06 48 FF C6 84 C0 0F 84 %text_done
+49 81 FE 00 00 61 00 0F 83 %error
+41 88 06 49 FF C6 E9 %text_loop
+:text_done
+5E 5A 59 58 C3
+:code
+01 55 04
+81 7D 04 00 FE 03 00 0F 87 %error
+E9 %text
+:newline
+56 48 8D 35 %nl E8 %text 5E C3
+:hex_name
+50 51 52 56
+49 81 FE F0 FF 60 00 0F 83 %error
+48 8D 35 %digits B9 08 00 00 00
+:hex_name_loop
+C1 C0 04 89 C2 83 E2 0F 8A 14 16
+41 88 16 49 FF C6 FF C9 0F 85 %hex_name_loop
+5E 5A 59 58 C3
+:immediate
+83 45 04 04
+50 51 52 56
+49 81 FE F0 FF 60 00 0F 83 %error
+48 8D 35 %digits B9 04 00 00 00
+:immediate_loop
+89 C2 C1 EA 04 83 E2 0F 8A 14 16
+41 88 16 49 FF C6
+89 C2 83 E2 0F 8A 14 16
+41 88 16 49 FF C6
+C1 E8 08 FF C9 0F 85 %immediate_loop
+5E 5A 59 58 E9 %newline
+:label
+56 48 8D 35 %label_text E8 %text E8 %hex_name E8 %newline 5E C3
+:reference
+E8 %code E8 %hex_name E9 %newline
+:new_label
+8B 45 14 FF 45 14 C3
+:load_local
+85 C0 0F 88 %load_global
+F7 D8 48 8D 35 %load_text BA 02 00 00 00
+E8 %code E9 %immediate
+:load_global
+25 FF FF FF 7F 48 8D 35 %load_global_text BA 06 00 00 00 E9 %reference
+:store_local
+85 C0 0F 88 %store_global
+F7 D8 48 8D 35 %store_text BA 02 00 00 00
+E8 %code E9 %immediate
+:store_global
+25 FF FF FF 7F 48 8D 35 %store_global_text BA 06 00 00 00 E9 %reference
+:expect
+39 C3 0F 85 %error E9 %lex
+
+; Intern an identifier, 1..63 ASCII bytes. Returns EAX=index.
+:identifier
+4D 89 E0 45 31 C9
+:id_scan
+4D 39 EC 0F 84 %id_lookup
+41 0F B6 04 24
+83 F8 5F 0F 84 %id_take
+89 C2 83 EA 30 83 FA 09 0F 86 %id_take
+83 C8 20 83 E8 61 83 F8 19 0F 87 %id_lookup
+:id_take
+49 FF C4 41 FF C1
+41 83 F9 3F 0F 87 %error
+E9 %id_scan
+:id_lookup
+41 BA 00 00 61 00 31 D2
+:id_slot
+3B 55 00 0F 84 %id_new
+45 38 0A 0F 85 %id_next
+31 C9
+:id_compare
+41 8A 04 08 41 3A 44 0A 01 0F 85 %id_next
+FF C1 44 39 C9 0F 82 %id_compare
+89 D0 C3
+:id_next
+49 83 C2 40 FF C2 E9 %id_slot
+:id_new
+81 FA 00 00 01 00 0F 83 %error
+45 88 0A 31 C9
+:id_copy
+41 8A 04 08 41 88 44 0A 01
+FF C1 44 39 C9 0F 82 %id_copy
+FF 45 00 89 D0 C3
+
+; Tokens: ASCII punctuation; 80..87 compound operators; 90 integer;
+; 100=int 101=return 102=if 103=else 104=while 105=void
+; 106=main 107=break 108=continue 109=for; 10A/10B are I/O intrinsics.
+; 10C..127 reserve the remaining C89/C99 keywords; user names start at 128.
+:lex
+4D 39 EC 0F 84 %lex_eof
+41 0F B6 04 24
+83 F8 20 0F 86 %lex_space
+83 F8 5F 0F 84 %lex_id
+89 C2 83 CA 20 83 EA 61 83 FA 19 0F 86 %lex_id
+89 C2 83 EA 30 83 FA 09 0F 86 %lex_number
+49 FF C4 89 C3
+83 FB 27 0F 84 %lex_char
+4D 39 EC 0F 84 %lex_return
+41 0F B6 14 24
+83 FB 2F 0F 85 %lex_pairs
+83 FA 2F 0F 84 %lex_line_comment
+83 FA 2A 0F 84 %lex_block_comment
+:lex_pairs
+48 8D 35 %pairs
+:lex_pair_loop
+80 3E 00 0F 84 %lex_return
+3A 1E 0F 85 %lex_pair_next
+3A 56 01 0F 85 %lex_pair_next
+0F B6 5E 02 49 FF C4 C3
+:lex_pair_next
+48 83 C6 03 E9 %lex_pair_loop
+:lex_space
+49 FF C4 E9 %lex
+:lex_id
+E8 %identifier 8D 98 00 01 00 00 C3
+:lex_eof
+31 DB
+:lex_return
+C3
+:lex_line_comment
+49 FF C4
+:lex_line_loop
+4D 39 EC 0F 84 %lex_eof
+41 80 3C 24 0A 0F 84 %lex_space
+49 FF C4 E9 %lex_line_loop
+:lex_block_comment
+49 FF C4
+:lex_block_loop
+4D 39 EC 0F 84 %error
+41 8A 04 24 49 FF C4
+3C 2A 0F 85 %lex_block_loop
+4D 39 EC 0F 84 %error
+41 80 3C 24 2F 0F 85 %lex_block_loop
+49 FF C4 E9 %lex
+
+:lex_number
+45 31 C0 45 31 C9 41 BA 0A 00 00 00
+41 80 3C 24 30 0F 85 %number_loop
+41 BA 08 00 00 00
+49 8D 44 24 01 4C 39 E8 0F 83 %number_loop
+41 0F B6 44 24 01 83 C8 20 83 F8 78 0F 85 %number_loop
+49 83 C4 02 41 BA 10 00 00 00
+:number_loop
+4D 39 EC 0F 84 %number_done
+41 0F B6 0C 24 83 E9 30
+83 F9 09 0F 86 %number_digit
+83 C9 20 83 E9 31 83 F9 05 0F 87 %number_done
+83 C1 0A
+:number_digit
+44 39 D1 0F 83 %error
+4D 0F AF C2 49 01 C8
+49 81 F8 FF FF FF 7F 0F 87 %error
+49 FF C4 41 FF C1 E9 %number_loop
+:number_done
+45 85 C9 0F 84 %error
+44 89 45 10 BB 90 00 00 00 C3
+:lex_char
+4D 39 EC 0F 84 %error
+41 0F B6 04 24 49 FF C4
+83 F8 27 0F 84 %error
+83 F8 0A 0F 84 %error
+83 F8 0D 0F 84 %error
+83 F8 5C 0F 85 %char_end
+4D 39 EC 0F 84 %error
+41 0F B6 04 24 49 FF C4
+83 F8 6E 0F 84 %char_n
+83 F8 72 0F 84 %char_r
+83 F8 74 0F 84 %char_t
+83 F8 30 0F 84 %char_zero
+83 F8 5C 0F 84 %char_end
+83 F8 27 0F 84 %char_end
+83 F8 22 0F 85 %error
+E9 %char_end
+:char_n
+B8 0A 00 00 00 E9 %char_end
+:char_r
+B8 0D 00 00 00 E9 %char_end
+:char_t
+B8 09 00 00 00 E9 %char_end
+:char_zero
+31 C0
+:char_end
+4D 39 EC 0F 84 %error
+41 80 3C 24 27 0F 85 %error
+49 FF C4 89 45 10 BB 90 00 00 00 C3
+
+; Identifier token validation, return identifier index in EAX.
+:name_token
+81 FB 06 01 00 00 0F 84 %name_ok
+81 FB 0A 01 00 00 0F 84 %name_ok
+81 FB 0B 01 00 00 0F 84 %name_ok
+81 FB 28 01 00 00 0F 82 %error
+:name_ok
+8D 83 00 FF FF FF C3
+
+; Clear per-function locals; declarations/definition share arity metadata.
+:function
+B8 00 01 00 00 E8 %expect
+E8 %name_token 89 45 0C
+E8 %lex
+83 FB 28 0F 85 %global_declaration
+8B 45 0C C1 E0 04 F7 80 08 00 A1 00 08 00 00 00 0F 85 %error
+B8 28 00 00 00 E8 %expect
+31 C9
+:clear_locals
+3B 4D 00 0F 83 %params_start
+89 C8 C1 E0 04
+F7 80 08 00 A1 00 08 00 00 00 0F 85 %clear_local_next
+C7 80 00 00 A1 00 00 00 00 00
+:clear_local_next
+FF C1 E9 %clear_locals
+:params_start
+C7 45 08 00 00 00 00
+81 FB 05 01 00 00 0F 85 %params_loop
+E8 %lex 83 FB 29 0F 85 %error
+:params_loop
+83 FB 29 0F 84 %params_done
+B8 00 01 00 00 E8 %expect
+E8 %declare_local
+83 7D 08 04 0F 87 %error
+83 FB 2C 0F 85 %params_done
+E8 %lex 83 FB 29 0F 84 %error E9 %params_loop
+:params_done
+B8 29 00 00 00 E8 %expect
+83 7D 0C 06 0F 85 %main_arity_ok
+83 7D 08 00 0F 85 %error
+:main_arity_ok
+8B 45 0C C1 E0 04 48 8D 90 00 00 A1 00
+F7 42 08 04 00 00 00 0F 84 %arity_new
+8B 4A 04 3B 4D 08 0F 85 %error
+:arity_new
+8B 4D 08 89 4A 04 83 4A 08 04
+83 FB 3B 0F 84 %prototype
+F7 42 08 01 00 00 00 0F 85 %error
+83 4A 08 01
+8B 45 0C 48 8D 35 %function_label E8 %text E8 %hex_name E8 %newline
+48 8D 35 %prologue_text BA 0B 00 00 00 E8 %code
+83 7D 08 00 0F 84 %function_body
+48 8D 35 %param1_text BA 03 00 00 00 E8 %code
+83 7D 08 01 0F 84 %function_body
+48 8D 35 %param2_text BA 03 00 00 00 E8 %code
+83 7D 08 02 0F 84 %function_body
+48 8D 35 %param3_text BA 04 00 00 00 E8 %code
+83 7D 08 03 0F 84 %function_body
+48 8D 35 %param4_text BA 04 00 00 00 E8 %code
+:function_body
+C7 45 20 00 00 00 00
+83 FB 7B 0F 85 %error
+E8 %statement
+48 8D 35 %default_return BA 04 00 00 00 E9 %code
+:prototype
+E9 %lex
+
+; Zero-initialized int globals and fixed-length int arrays live in target BSS.
+; Metadata +0 carries 80000000|id; +8 has global/array flags; +C is length.
+:global_declaration
+48 83 EC 18
+:global_next
+8B 45 0C C1 E0 04 83 B8 08 00 A1 00 00 0F 85 %error
+C7 04 24 01 00 00 00 C7 44 24 04 08 00 00 00
+83 FB 5B 0F 85 %global_initializer
+E8 %lex
+81 FB 90 00 00 00 0F 85 %error
+8B 45 10 85 C0 0F 84 %error
+3D 00 00 10 00 0F 87 %error
+89 04 24 C7 44 24 04 18 00 00 00
+E8 %lex B8 5D 00 00 00 E8 %expect
+:global_initializer
+83 FB 3D 0F 85 %global_allocate
+83 7C 24 04 08 0F 85 %error
+E8 %lex 81 FB 90 00 00 00 0F 85 %error
+83 7D 10 00 0F 85 %error E8 %lex
+:global_allocate
+8B 45 0C 89 C2 C1 E2 04
+0D 00 00 00 80 89 82 00 00 A1 00
+8B 44 24 04 89 82 08 00 A1 00
+8B 04 24 89 82 0C 00 A1 00
+C1 E0 02 8B 55 30 01 D0
+3D 00 10 C0 00 0F 87 %error
+89 45 30 89 D0
+48 8D 35 %origin_text E8 %text E8 %hex_name E8 %newline
+8B 45 0C 48 8D 35 %global_label_text E8 %text E8 %hex_name E8 %newline
+8B 45 04 05 00 12 40 00
+48 8D 35 %origin_text E8 %text E8 %hex_name E8 %newline
+83 FB 2C 0F 85 %global_done
+E8 %lex E8 %name_token 89 45 0C E8 %lex E9 %global_next
+:global_done
+B8 3B 00 00 00 E8 %expect 48 83 C4 18 C3
+
+; Register local variable in metadata; consumes its identifier token.
+:declare_local
+E8 %name_token C1 E0 04
+48 8D 90 00 00 A1 00
+83 3A 00 0F 85 %error
+FF 45 08 83 7D 08 40 0F 87 %error
+8B 45 08 C1 E0 03 89 02 89 C7
+E9 %lex
+
+; Parse expression with minimum precedence ECX. Return lvalue offset EDI.
+:expression
+FF 45 24 81 7D 24 80 00 00 00 0F 87 %error
+48 83 EC 28 89 0C 24
+E8 %unary
+:expression_loop
+48 8D 35 %operators
+:operator_find
+83 3E 00 0F 84 %expression_done
+3B 1E 0F 84 %operator_found
+48 83 C6 10 E9 %operator_find
+:operator_found
+8B 46 04 3B 04 24 0F 82 %expression_done
+48 89 74 24 08 89 7C 24 10
+83 FB 3D 0F 84 %assignment
+81 FB 86 00 00 00 0F 84 %logical
+81 FB 87 00 00 00 0F 84 %logical
+48 8D 35 %push_text BA 01 00 00 00 E8 %code
+E8 %lex
+48 8B 74 24 08 8B 4E 04 FF C1 E8 %expression
+48 8D 35 %pop_binary_text BA 03 00 00 00 E8 %code
+48 8B 74 24 08 8B 56 0C 8B 76 08 E8 %code
+31 FF E9 %expression_loop
+:assignment
+85 FF 0F 84 %error
+83 FF FF 0F 85 %assignment_rhs
+48 8D 35 %push_address_text BA 01 00 00 00 E8 %code
+:assignment_rhs
+E8 %lex B9 01 00 00 00 E8 %expression
+8B 44 24 10 83 F8 FF 0F 84 %assignment_indirect
+E8 %store_local
+31 FF E9 %expression_loop
+:assignment_indirect
+48 8D 35 %store_indirect_text BA 03 00 00 00 E8 %code
+31 FF E9 %expression_loop
+:logical
+89 5C 24 18 E8 %new_label 89 44 24 1C
+48 8D 35 %bool_text BA 08 00 00 00 E8 %code
+8B 44 24 1C 48 8D 35 %jz_text BA 06 00 00 00
+81 7C 24 18 86 00 00 00 0F 84 %logical_branch
+48 8D 35 %jnz_text
+:logical_branch
+E8 %reference E8 %lex
+48 8B 74 24 08 8B 4E 04 FF C1 E8 %expression
+48 8D 35 %bool_text BA 08 00 00 00 E8 %code
+8B 44 24 1C E8 %label
+31 FF E9 %expression_loop
+:expression_done
+48 83 C4 28 FF 4D 24 C3
+
+:unary
+FF 45 28 81 7D 28 80 00 00 00 0F 87 %error
+E8 %unary_impl FF 4D 28 C3
+:unary_impl
+83 FB 2B 0F 84 %unary_plus
+83 FB 2D 0F 84 %unary_minus
+83 FB 21 0F 84 %unary_not
+83 FB 7E 0F 84 %unary_complement
+E9 %primary
+:unary_plus
+E8 %lex E8 %unary 31 FF C3
+:unary_minus
+E8 %lex E8 %unary
+48 8D 35 %neg_text BA 02 00 00 00 E8 %code 31 FF C3
+:unary_not
+E8 %lex E8 %unary
+48 8D 35 %not_text BA 08 00 00 00 E8 %code 31 FF C3
+:unary_complement
+E8 %lex E8 %unary
+48 8D 35 %complement_text BA 02 00 00 00 E8 %code 31 FF C3
+:primary
+83 FB 28 0F 84 %parenthesized
+81 FB 90 00 00 00 0F 84 %constant
+E8 %name_token
+50 E8 %lex 58
+83 FB 28 0F 84 %call_expression
+C1 E0 04 8B B8 00 00 A1 00
+F7 80 08 00 A1 00 10 00 00 00 0F 85 %array_element
+85 FF 0F 84 %error
+89 F8 E8 %load_local C3
+:array_element
+57 B8 5B 00 00 00 E8 %expect
+B9 01 00 00 00 E8 %expression
+B8 5D 00 00 00 E8 %expect
+58 25 FF FF FF 7F
+48 8D 35 %array_address_text BA 0A 00 00 00 E8 %reference
+48 8D 35 %array_load_text BA 09 00 00 00 E8 %code
+BF FF FF FF FF C3
+:parenthesized
+E8 %lex B9 01 00 00 00 E8 %expression
+57 B8 29 00 00 00 E8 %expect 5F C3
+:constant
+8B 45 10 48 8D 35 %constant_text BA 01 00 00 00 E8 %code E8 %immediate
+E8 %lex 31 FF C3
+
+; Evaluate <=4 args left-to-right onto stack, then load Windows registers.
+:call_expression
+48 83 EC 18 89 04 24 C7 44 24 04 00 00 00 00
+C1 E0 04 83 B8 00 00 A1 00 00 0F 85 %error
+E8 %lex
+:argument_loop
+83 FB 29 0F 84 %arguments_done
+B9 01 00 00 00 E8 %expression
+48 8D 35 %push_text BA 01 00 00 00 E8 %code
+FF 44 24 04 83 7C 24 04 04 0F 87 %error
+83 FB 2C 0F 85 %arguments_done
+E8 %lex 83 FB 29 0F 84 %error E9 %argument_loop
+:arguments_done
+B8 29 00 00 00 E8 %expect
+8B 04 24 C1 E0 04 48 8D 90 00 00 A1 00
+F7 42 08 04 00 00 00 0F 84 %call_arity_new
+8B 4A 04 3B 4C 24 04 0F 85 %error
+:call_arity_new
+8B 4C 24 04 89 4A 04 83 4A 08 06
+83 F9 04 0F 85 %args3
+48 8D 35 %pop_r9_text BA 02 00 00 00 E8 %code
+:args3
+83 F9 03 0F 82 %args2
+48 8D 35 %pop_r8_text BA 02 00 00 00 E8 %code
+:args2
+83 F9 02 0F 82 %args1
+48 8D 35 %pop_rdx_text BA 01 00 00 00 E8 %code
+:args1
+83 F9 01 0F 82 %args0
+48 8D 35 %pop_rcx_text BA 01 00 00 00 E8 %code
+:args0
+48 8D 35 %call_align_text BA 10 00 00 00 E8 %code
+8B 04 24 48 8D 35 %call_text BA 05 00 00 00 E8 %reference
+48 8D 35 %call_restore_text BA 05 00 00 00 E8 %code
+31 FF 48 83 C4 18 C3
+
+; Statements. Declarations are restricted to the outer function block;
+; inner blocks may use existing locals but may not declare or shadow names.
+:statement
+FF 45 2C 81 7D 2C 80 00 00 00 0F 87 %error
+E8 %statement_impl FF 4D 2C C3
+:statement_impl
+83 FB 7B 0F 84 %block
+81 FB 00 01 00 00 0F 84 %declaration
+81 FB 01 01 00 00 0F 84 %return_statement
+81 FB 02 01 00 00 0F 84 %if_statement
+81 FB 04 01 00 00 0F 84 %while_statement
+81 FB 09 01 00 00 0F 84 %for_statement
+81 FB 07 01 00 00 0F 84 %break_statement
+81 FB 08 01 00 00 0F 84 %continue_statement
+83 FB 3B 0F 84 %empty_statement
+B9 01 00 00 00 E8 %expression
+B8 3B 00 00 00 E9 %expect
+:empty_statement
+E9 %lex
+:block
+FF 45 20 E8 %lex
+:block_loop
+83 FB 7D 0F 84 %block_done
+85 DB 0F 84 %error
+E8 %statement E9 %block_loop
+:block_done
+FF 4D 20 E9 %lex
+:declaration
+83 7D 20 01 0F 85 %error
+E8 %lex
+:declaration_next
+E8 %declare_local
+83 FB 3D 0F 85 %declaration_separator
+57 E8 %lex B9 01 00 00 00 E8 %expression 58 E8 %store_local
+:declaration_separator
+83 FB 2C 0F 85 %declaration_done
+E8 %lex E9 %declaration_next
+:declaration_done
+B8 3B 00 00 00 E9 %expect
+:return_statement
+E8 %lex B9 01 00 00 00 E8 %expression
+B8 3B 00 00 00 E8 %expect
+48 8D 35 %return_text BA 02 00 00 00 E9 %code
+:break_statement
+8B 45 18 85 C0 0F 84 %error
+48 8D 35 %jmp_text BA 05 00 00 00 E8 %reference
+E8 %lex B8 3B 00 00 00 E9 %expect
+:continue_statement
+8B 45 1C 85 C0 0F 84 %error
+48 8D 35 %jmp_text BA 05 00 00 00 E8 %reference
+E8 %lex B8 3B 00 00 00 E9 %expect
+:if_statement
+48 83 EC 18
+E8 %new_label 89 04 24 E8 %new_label 89 44 24 04
+E8 %lex B8 28 00 00 00 E8 %expect
+B9 01 00 00 00 E8 %expression
+B8 29 00 00 00 E8 %expect
+48 8D 35 %test_text BA 02 00 00 00 E8 %code
+8B 04 24 48 8D 35 %jz_text BA 06 00 00 00 E8 %reference
+E8 %statement
+8B 44 24 04 48 8D 35 %jmp_text BA 05 00 00 00 E8 %reference
+8B 04 24 E8 %label
+81 FB 03 01 00 00 0F 85 %if_done
+E8 %lex E8 %statement
+:if_done
+8B 44 24 04 E8 %label 48 83 C4 18 C3
+:while_statement
+48 83 EC 18
+8B 45 18 89 04 24 8B 45 1C 89 44 24 04
+E8 %new_label 89 44 24 08 89 45 1C
+E8 %new_label 89 44 24 0C 89 45 18
+8B 44 24 08 E8 %label
+E8 %lex B8 28 00 00 00 E8 %expect
+B9 01 00 00 00 E8 %expression
+B8 29 00 00 00 E8 %expect
+48 8D 35 %test_text BA 02 00 00 00 E8 %code
+8B 44 24 0C 48 8D 35 %jz_text BA 06 00 00 00 E8 %reference
+E8 %statement
+8B 44 24 08 48 8D 35 %jmp_text BA 05 00 00 00 E8 %reference
+8B 44 24 0C E8 %label
+8B 04 24 89 45 18 8B 44 24 04 89 45 1C
+48 83 C4 18 C3
+:for_statement
+48 83 EC 28
+8B 45 18 89 04 24 8B 45 1C 89 44 24 04
+E8 %new_label 89 44 24 08
+E8 %new_label 89 44 24 0C 89 45 18
+E8 %new_label 89 44 24 10 89 45 1C
+E8 %new_label 89 44 24 14
+E8 %lex B8 28 00 00 00 E8 %expect
+83 FB 3B 0F 84 %for_init_done
+B9 01 00 00 00 E8 %expression
+:for_init_done
+B8 3B 00 00 00 E8 %expect
+8B 44 24 08 E8 %label
+83 FB 3B 0F 84 %for_condition_done
+B9 01 00 00 00 E8 %expression
+48 8D 35 %test_text BA 02 00 00 00 E8 %code
+8B 44 24 0C 48 8D 35 %jz_text BA 06 00 00 00 E8 %reference
+:for_condition_done
+B8 3B 00 00 00 E8 %expect
+8B 44 24 14 48 8D 35 %jmp_text BA 05 00 00 00 E8 %reference
+8B 44 24 10 E8 %label
+83 FB 29 0F 84 %for_increment_done
+B9 01 00 00 00 E8 %expression
+:for_increment_done
+B8 29 00 00 00 E8 %expect
+8B 44 24 08 48 8D 35 %jmp_text BA 05 00 00 00 E8 %reference
+8B 44 24 14 E8 %label
+E8 %statement
+8B 44 24 10 48 8D 35 %jmp_text BA 05 00 00 00 E8 %reference
+8B 44 24 0C E8 %label
+8B 04 24 89 45 18 8B 44 24 04 89 45 1C
+48 83 C4 28 C3
+
+; C0 lexer and output data. All instruction encodings below are source text
+; copied by the compiled compiler; external tools do not encode these.
+:digits
+"0123456789ABCDEF" 00
+:nl
+0A 00
+:error_text
+"C0 error near input byte 0x" 00
+:pad_text
+"~" 00
+:label_text
+":L" 00
+:function_label
+":F" 00
+:call_text
+"E8 %F" 00
+:jmp_text
+"E9 %L" 00
+:jz_text
+"0F84 %L" 00
+:jnz_text
+"0F85 %L" 00
+:load_text
+"8B85 " 00
+:store_text
+"8985 " 00
+:load_global_text
+"8B05 %G" 00
+:store_global_text
+"8905 %G" 00
+:array_address_text
+"4863C0 488D0D %G" 00
+:array_load_text
+"488D0481 4889C2 8B00
+" 00
+:push_address_text
+"52
+" 00
+:store_indirect_text
+"59 8901
+" 00
+:origin_text
+"^" 00
+:global_label_text
+":G" 00
+:constant_text
+"B8 " 00
+:prologue_text
+"55 4889E5 4881EC00040000
+" 00
+:param1_text
+"894DF8
+" 00
+:param2_text
+"8955F0
+" 00
+:param3_text
+"448945E8
+" 00
+:param4_text
+"44894DE0
+" 00
+:default_return
+"31C0 C9 C3
+" 00
+:return_text
+"C9 C3
+" 00
+:push_text
+"50
+" 00
+:pop_binary_text
+"89C1 58
+" 00
+:pop_rcx_text
+"59
+" 00
+:pop_rdx_text
+"5A
+" 00
+:pop_r8_text
+"4158
+" 00
+:pop_r9_text
+"4159
+" 00
+:call_align_text
+"4989E3 4883E4F0 4883EC30 4C895C2420
+" 00
+:call_restore_text
+"488B642420
+" 00
+:test_text
+"85C0
+" 00
+:bool_text
+"85C0 0F95C0 0FB6C0
+" 00
+:not_text
+"85C0 0F94C0 0FB6C0
+" 00
+:neg_text
+"F7D8
+" 00
+:complement_text
+"F7D0
+" 00
+:add_text
+"01C8
+" 00
+:sub_text
+"29C8
+" 00
+:mul_text
+"0FAFC1
+" 00
+:div_text
+"99 F7F9
+" 00
+:mod_text
+"99 F7F9 89D0
+" 00
+:and_text
+"21C8
+" 00
+:or_text
+"09C8
+" 00
+:xor_text
+"31C8
+" 00
+:shl_text
+"D3E0
+" 00
+:shr_text
+"D3F8
+" 00
+:eq_text
+"39C8 0F94C0 0FB6C0
+" 00
+:ne_text
+"39C8 0F95C0 0FB6C0
+" 00
+:lt_text
+"39C8 0F9CC0 0FB6C0
+" 00
+:le_text
+"39C8 0F9EC0 0FB6C0
+" 00
+:gt_text
+"39C8 0F9FC0 0FB6C0
+" 00
+:ge_text
+"39C8 0F9DC0 0FB6C0
+" 00
+
+:pairs
+3D 3D 80 21 3D 81 3C 3D 82 3E 3D 83
+3C 3C 84 3E 3E 85 26 26 86 7C 7C 87 00
+:operators
+3D000000 01000000 00000000 00000000
+87000000 02000000 00000000 00000000
+86000000 03000000 00000000 00000000
+7C000000 04000000 @or_text 02000000
+5E000000 05000000 @xor_text 02000000
+26000000 06000000 @and_text 02000000
+80000000 07000000 @eq_text 08000000
+81000000 07000000 @ne_text 08000000
+3C000000 08000000 @lt_text 08000000
+3E000000 08000000 @gt_text 08000000
+82000000 08000000 @le_text 08000000
+83000000 08000000 @ge_text 08000000
+84000000 09000000 @shl_text 02000000
+85000000 09000000 @shr_text 02000000
+2B000000 0A000000 @add_text 02000000
+2D000000 0A000000 @sub_text 02000000
+2A000000 0B000000 @mul_text 03000000
+2F000000 0B000000 @div_text 03000000
+25000000 0B000000 @mod_text 05000000
+00000000
+
+:keyword_names
+03 "int" ~0000003C
+06 "return" ~00000039
+02 "if" ~0000003D
+04 "else" ~0000003B
+05 "while" ~0000003A
+04 "void" ~0000003B
+04 "main" ~0000003B
+05 "break" ~0000003A
+08 "continue" ~00000037
+03 "for" ~0000003C
+0C "__c0_getchar" ~00000033
+0C "__c0_putchar" ~00000033
+04 "auto" ~0000003B
+04 "case" ~0000003B
+04 "char" ~0000003B
+05 "const" ~0000003A
+07 "default" ~00000038
+02 "do" ~0000003D
+06 "double" ~00000039
+04 "enum" ~0000003B
+06 "extern" ~00000039
+05 "float" ~0000003A
+04 "goto" ~0000003B
+04 "long" ~0000003B
+08 "register" ~00000037
+05 "short" ~0000003A
+06 "signed" ~00000039
+06 "sizeof" ~00000039
+06 "static" ~00000039
+06 "struct" ~00000039
+06 "switch" ~00000039
+07 "typedef" ~00000038
+05 "union" ~0000003A
+08 "unsigned" ~00000037
+08 "volatile" ~00000037
+06 "inline" ~00000039
+08 "restrict" ~00000037
+05 "_Bool" ~0000003A
+08 "_Complex" ~00000037
+0A "_Imaginary" ~00000035
+
+; Generated-program runtime: two tiny int functions plus five data bytes.
+; The templates are copied by C0, and all relocations are resolved by A1.
+:runtime_text
+":F0000000A
+4883EC38
+B9 F6FFFFFF
+FF15 %iat_get
+4889C1
+488D15 %R_IO_BYTE
+41B801000000
+4C8D0D %R_IO_COUNT
+48C744242000000000
+FF15 %iat_read
+85C0
+0F84 %R_GET_EOF
+8B05 %R_IO_COUNT
+83F801
+0F85 %R_GET_EOF
+0FB605 %R_IO_BYTE
+4883C438 C3
+:R_GET_EOF
+B8 FFFFFFFF 4883C438 C3
+:F0000000B
+4883EC38
+894C2430
+880D %R_IO_BYTE
+B9 F5FFFFFF
+FF15 %iat_get
+4889C1
+488D15 %R_IO_BYTE
+41B801000000
+4C8D0D %R_IO_COUNT
+48C744242000000000
+FF15 %iat_write
+85C0
+0F84 %R_PUT_EOF
+8B05 %R_IO_COUNT
+83F801
+0F85 %R_PUT_EOF
+8B442430 25FF000000
+4883C438 C3
+:R_PUT_EOF
+B8 FFFFFFFF 4883C438 C3
+:R_IO_BYTE
+00
+:R_IO_COUNT
+00000000
+" 00
+
+:target_prefix
+"; Hand-authored PE32+ bytes. Comments are not input to the decoder.
+; 0000 DOS header
+4D 5A 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00 00 00 00 00 80 00 00 00
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+; 0080 PE signature, COFF header, optional header
+50 45 00 00 64 86 02 00 00 00 00 00 00 00 00 00
+00 00 00 00 F0 00 23 00 0B 02 00 00 00 00 04 00
+00 00 00 00 00 10 70 00 00 12 00 00 00 10 00 00
+00 00 40 00 00 00 00 00 00 10 00 00 00 02 00 00
+06 00 00 00 00 00 00 00 06 00 00 00 00 00 00 00
+00 10 80 00 00 02 00 00 00 00 00 00 03 00 00 01
+00 00 10 00 00 00 00 00 00 10 00 00 00 00 00 00
+00 00 10 00 00 00 00 00 00 10 00 00 00 00 00 00
+00 00 00 00 10 00 00 00 00 00 00 00 00 00 00 00
+00 10 00 00 28 00 00 00 00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00 40 10 00 00 28 00 00 00
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+; 0180 end of optional header, section table
+00 00 00 00 00 00 00 00 2E 74 65 78 74 00 00 00
+00 F0 0F 00 00 10 00 00 00 00 04 00 00 02 00 00
+00 00 00 00 00 00 00 00 00 00 00 00 20 00 00 E0
+2E 62 73 73 00 00 00 00 00 10 70 00 00 00 10 00
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+00 00 00 00 80 00 00 C0 00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+^00401000
+; RVA 1000 import directory
+80 10 00 00 00 00 00 00 00 00 00 00 C0 10 00 00
+40 10 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+:iat_get
+; RVA 1040 IAT
+E0 10 00 00 00 00 00 00 F0 10 00 00 00 00 00 00
+00 11 00 00 00 00 00 00 10 11 00 00 00 00 00 00
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+; RVA 1080 ILT
+E0 10 00 00 00 00 00 00 F0 10 00 00 00 00 00 00
+00 11 00 00 00 00 00 00 10 11 00 00 00 00 00 00
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+; RVA 10C0 DLL name
+4B 45 52 4E 45 4C 33 32 2E 64 6C 6C 00 00 00 00
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+; RVA 10E0 hint/name entries
+00 00 47 65 74 53 74 64 48 61 6E 64 6C 65 00 00
+00 00 52 65 61 64 46 69 6C 65 00 00 00 00 00 00
+00 00 57 72 69 74 65 46 69 6C 65 00 00 00 00 00
+00 00 45 78 69 74 50 72 6F 63 65 73 73 00 00 00
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+
+^00401048
+:iat_read
+^00401050
+:iat_write
+^00401058
+:iat_exit
+^00401200
+
+48 83 EC28 E8 %F00000006 89C1 FF15 %iat_exit CC
+" 00
+; Compiler PE section tail padding; emitted by A1, never by an external tool.
+~00002D26
+
+

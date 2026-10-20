@@ -1,0 +1,29 @@
+[
+  {
+    "path": "audit.ps1"
+  },
+  {
+    "path": "README.zh-CN.md"
+  },
+  {
+    "path": "run.ps1"
+  },
+  {
+    "path": "templates/floating/probe.c"
+  },
+  {
+    "path": "templates/floating/test.ps1"
+  },
+  {
+    "path": "templates/preprocessor/test.ps1"
+  },
+  {
+    "path": "templates/rescan/probe.c"
+  },
+  {
+    "path": "templates/rescan/test.ps1"
+  },
+  {
+    "path": "README.md"
+  }
+]

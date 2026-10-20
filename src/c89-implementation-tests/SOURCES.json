@@ -1,0 +1,65 @@
+[
+  {
+    "path": "audit.ps1"
+  },
+  {
+    "path": "README.zh-CN.md"
+  },
+  {
+    "path": "run.ps1"
+  },
+  {
+    "path": "templates/characters/probe.c"
+  },
+  {
+    "path": "templates/characters/test-objects.ps1"
+  },
+  {
+    "path": "templates/characters/test.ps1"
+  },
+  {
+    "path": "templates/layout/direct-probe.c"
+  },
+  {
+    "path": "templates/layout/probe.c"
+  },
+  {
+    "path": "templates/layout/test-objects.ps1"
+  },
+  {
+    "path": "templates/layout/test.ps1"
+  },
+  {
+    "path": "templates/math/probe.c"
+  },
+  {
+    "path": "templates/math/test.ps1"
+  },
+  {
+    "path": "templates/pointers/probe.c"
+  },
+  {
+    "path": "templates/pointers/test-objects.ps1"
+  },
+  {
+    "path": "templates/pointers/test.ps1"
+  },
+  {
+    "path": "templates/rounding/probe.c"
+  },
+  {
+    "path": "templates/rounding/test-objects.ps1"
+  },
+  {
+    "path": "templates/rounding/test.ps1"
+  },
+  {
+    "path": "templates/signals/probe.c"
+  },
+  {
+    "path": "templates/signals/test.ps1"
+  },
+  {
+    "path": "README.md"
+  }
+]

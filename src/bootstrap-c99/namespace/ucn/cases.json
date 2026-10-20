@@ -1,0 +1,428 @@
+[
+  {
+    "name": "literal-narrow-values",
+    "source": "int main(void){return '\\u00a0'!=-96 || '\\u00FF'!=-1 || '\\U000000e9'!=-23;}",
+    "reject": false,
+    "control": false
+  },
+  {
+    "name": "literal-wide-values",
+    "source": "int main(void){return L'\\u4e2d'!=0x4e2d || L'\\U0000abcd'!=0xabcd;}",
+    "reject": false,
+    "control": false
+  },
+  {
+    "name": "literal-allowed-low",
+    "source": "int main(void){return '\\u0024'!=36 || '\\u0040'!=64 || '\\u0060'!=96;}",
+    "reject": false,
+    "control": false
+  },
+  {
+    "name": "literal-fixed-digits",
+    "source": "int main(void){char *s=\"\\u00e9A\\U000000ffB\";return sizeof(\"\\u00e9A\\U000000ffB\")!=5 || (unsigned char)s[0]!=233 || s[1]!=65 || (unsigned char)s[2]!=255 || s[3]!=66 || s[4];}",
+    "reject": false,
+    "control": false
+  },
+  {
+    "name": "literal-wide-string",
+    "source": "int main(void){unsigned short s[]=L\"\\u4e2d\\U00006587\";return sizeof(s)!=6 || s[0]!=0x4e2d || s[1]!=0x6587 || s[2];}",
+    "reject": false,
+    "control": false
+  },
+  {
+    "name": "literal-adjacent",
+    "source": "int main(void){unsigned short *s=L\"\\u4e2d\" L\"\\u6587\";return s[0]!=0x4e2d || s[1]!=0x6587 || s[2];}",
+    "reject": false,
+    "control": false
+  },
+  {
+    "name": "literal-unrepresentable",
+    "source": "int main(void){return '\\u0100'!=63 || L'\\U0001f600'!=63 || \"\\u4e2d\"[0]!=63 || L\"\\U0001f600\"[0]!=63;}",
+    "reject": false,
+    "control": false
+  },
+  {
+    "name": "literal-multichar",
+    "source": "int main(void){return '\\u00e9A'!=0xe941 || L'\\u4e2dA'!=65;}",
+    "reject": false,
+    "control": false
+  },
+  {
+    "name": "literal-macro-literal",
+    "source": "#define VALUE L'\\u4e2d'\nint main(void){return VALUE!=0x4e2d;}",
+    "reject": false,
+    "control": false
+  },
+  {
+    "name": "literal-preprocessor",
+    "source": "#if '\\u00e9'!=-23 || L'\\u4e2d'!=0x4e2d\n#error wrong UCN value\n#endif\nint main(void){return 0;}",
+    "reject": false,
+    "control": false
+  },
+  {
+    "name": "literal-escaped-backslash",
+    "source": "int main(void){char *s=\"\\\\u0041\";return sizeof(\"\\\\u0041\")!=7 || s[0]!=92 || s[1]!=117;}",
+    "reject": false,
+    "control": true
+  },
+  {
+    "name": "literal-ordinary-control",
+    "source": "int main(void){return '\\x41'!=65 || L'\\xffff'!=65535 || '\\101'!=65;}",
+    "reject": false,
+    "control": true
+  },
+  {
+    "name": "literal-reject-basic",
+    "source": "int main(void){return '\\u0041';}",
+    "reject": true,
+    "control": false
+  },
+  {
+    "name": "literal-reject-zero",
+    "source": "char *s=\"\\u0000\";int main(void){return 0;}",
+    "reject": true,
+    "control": false
+  },
+  {
+    "name": "literal-reject-control",
+    "source": "int main(void){return L'\\u009f';}",
+    "reject": true,
+    "control": false
+  },
+  {
+    "name": "literal-reject-surrogate-low",
+    "source": "int main(void){return L'\\ud800';}",
+    "reject": true,
+    "control": false
+  },
+  {
+    "name": "literal-reject-surrogate-high",
+    "source": "char *s=\"\\U0000dfff\";int main(void){return 0;}",
+    "reject": true,
+    "control": false
+  },
+  {
+    "name": "literal-reject-short-four",
+    "source": "char *s=\"\\u123\";int main(void){return 0;}",
+    "reject": true,
+    "control": false
+  },
+  {
+    "name": "literal-reject-short-eight",
+    "source": "int main(void){return L'\\U000abcd';}",
+    "reject": true,
+    "control": false
+  },
+  {
+    "name": "literal-reject-nonhex",
+    "source": "int main(void){return '\\u00q0';}",
+    "reject": true,
+    "control": false
+  },
+  {
+    "name": "literal-reject-eight-basic",
+    "source": "char *s=\"\\U00000041\";int main(void){return 0;}",
+    "reject": true,
+    "control": false
+  },
+  {
+    "name": "literal-surrogate-neighbors",
+    "source": "int main(void){return L'\\ud7ff'!=0xd7ff || L'\\ue000'!=0xe000;}",
+    "reject": false,
+    "control": false
+  },
+  {
+    "name": "identifier-variable-spellings",
+    "source": "int \\u4e2d=7;int main(void){return \\U00004E2D!=7;}",
+    "reject": false,
+    "control": false
+  },
+  {
+    "name": "identifier-identifier-suffix",
+    "source": "int a\\u03b1_2=9;int main(void){return a\\U000003B1_2!=9;}",
+    "reject": false,
+    "control": false
+  },
+  {
+    "name": "identifier-function",
+    "source": "int \\u03b1(int x){return x+2;}int main(void){return \\U000003B1(5)!=7;}",
+    "reject": false,
+    "control": false
+  },
+  {
+    "name": "identifier-typedef-members",
+    "source": "typedef struct \\u4e2d{int \\u03b1;} \\u6587;int main(void){\\U00006587 x={12};return x.\\U000003B1!=12;}",
+    "reject": false,
+    "control": false
+  },
+  {
+    "name": "identifier-enum-label",
+    "source": "enum E{\\u03b1=6};int main(void){goto \\u4e2d;return 1;\\U00004E2D:return \\U000003B1!=6;}",
+    "reject": false,
+    "control": false
+  },
+  {
+    "name": "identifier-noninitial-digit",
+    "source": "int a\\u0660=4;int main(void){return a\\U00000660!=4;}",
+    "reject": false,
+    "control": false
+  },
+  {
+    "name": "identifier-macro-spelling",
+    "source": "#define \\u4e2d 8\nint main(void){return \\U00004E2D!=8;}",
+    "reject": false,
+    "control": false
+  },
+  {
+    "name": "identifier-macro-parameter",
+    "source": "#define F(\\u03b1) (\\U000003B1+1)\nint main(void){return F(6)!=7;}",
+    "reject": false,
+    "control": false
+  },
+  {
+    "name": "identifier-macro-defined",
+    "source": "#define \\u03b1 2\n#if !defined(\\U000003B1)\n#error absent\n#endif\n#undef \\U000003B1\n#ifdef \\u03b1\n#error still present\n#endif\nint main(void){return 0;}",
+    "reject": false,
+    "control": false
+  },
+  {
+    "name": "identifier-macro-redefinition",
+    "source": "#define \\u03b1 6\n#define \\U000003B1 6\nint main(void){return \\u03b1!=6;}",
+    "reject": false,
+    "control": false
+  },
+  {
+    "name": "identifier-paste",
+    "source": "#define CAT(a,b) a##b\nint \\u4e2dx=3;int main(void){return CAT(\\U00004E2D,x)!=3;}",
+    "reject": false,
+    "control": false
+  },
+  {
+    "name": "identifier-stringize",
+    "source": "#define S(a) #a\nint main(void){return (unsigned char)S(\\u00e9)[0]!=233;}",
+    "reject": false,
+    "control": false
+  },
+  {
+    "name": "identifier-reject-initial-digit",
+    "source": "int \\u0660a;int main(void){return 0;}",
+    "reject": true,
+    "control": false
+  },
+  {
+    "name": "identifier-reject-symbol",
+    "source": "int \\u0024;int main(void){return 0;}",
+    "reject": true,
+    "control": false
+  },
+  {
+    "name": "identifier-reject-gap",
+    "source": "int \\u00d7;int main(void){return 0;}",
+    "reject": true,
+    "control": false
+  },
+  {
+    "name": "identifier-reject-supplementary",
+    "source": "int \\U00010000;int main(void){return 0;}",
+    "reject": true,
+    "control": false
+  },
+  {
+    "name": "identifier-reject-short",
+    "source": "int \\u03;int main(void){return 0;}",
+    "reject": true,
+    "control": false
+  },
+  {
+    "name": "identifier-reject-surrogate",
+    "source": "int \\ud800;int main(void){return 0;}",
+    "reject": true,
+    "control": false
+  },
+  {
+    "name": "identifier-reject-duplicate-parameter",
+    "source": "#define F(\\u03b1,\\U000003B1) 0\nint main(void){return 0;}",
+    "reject": true,
+    "control": false
+  },
+  {
+    "name": "identifier-reject-ppnumber",
+    "source": "int main(void){return 1\\u03b1;}",
+    "reject": true,
+    "control": false
+  },
+  {
+    "name": "identifier-reject-redefinition",
+    "source": "#define \\u03b1 1\n#define \\U000003B1 2\nint main(void){return 0;}",
+    "reject": true,
+    "control": false
+  },
+  {
+    "name": "identifier-ascii-control",
+    "source": "int ascii_name=3;int main(void){return ascii_name!=3;}",
+    "reject": false,
+    "control": true
+  },
+  {
+    "name": "identifier-long-distinct",
+    "source": "int \\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2da=3;int \\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2Db=5;int main(void){return \\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2da+\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2Db!=8;}",
+    "reject": false,
+    "control": false
+  },
+  {
+    "name": "followup-func-spelling",
+    "source": "int \\u03b1(void){return sizeof(__func__)!=2 || __func__[0]!=63 || __func__[1];}int main(void){return \\U000003B1();}",
+    "reject": false,
+    "control": false
+  },
+  {
+    "name": "followup-func-uppercase-spelling",
+    "source": "int \\U000003B1(void){return sizeof(__func__)!=2 || __func__[0]!=63 || __func__[1];}int main(void){return \\u03b1();}",
+    "reject": false,
+    "control": false
+  },
+  {
+    "name": "followup-inactive-valid",
+    "source": "#if 0\nint \\u4e2d = no_such_name;\n#endif\nint main(void){return 0;}",
+    "reject": false,
+    "control": false
+  },
+  {
+    "name": "followup-inactive-nondirective-backslash",
+    "source": "#if 0\n\\x43 whatever\n#endif\nint main(void){return 0;}",
+    "reject": false,
+    "control": true
+  },
+  {
+    "name": "followup-macro-equivalent-body",
+    "source": "#define A \\u03b1\n#define A \\U000003B1\nint \\u03b1=5;int main(void){return A!=5;}",
+    "reject": false,
+    "control": false
+  },
+  {
+    "name": "followup-literal-not-identifier-compare",
+    "source": "#define A L'\\u03b1'\n#define A L'\\U000003B1'\nint main(void){return 0;}",
+    "reject": true,
+    "control": false
+  },
+  {
+    "name": "followup-pragma-hex-control",
+    "source": "_Pragma(\"\\x53TDC INVALID ON\") int main(void){return 0;}",
+    "reject": false,
+    "control": true
+  },
+  {
+    "name": "followup-pragma-octal-control",
+    "source": "_Pragma(\"\\123TDC INVALID ON\") int main(void){return 0;}",
+    "reject": false,
+    "control": true
+  },
+  {
+    "name": "followup-reject-initial-thai-digit",
+    "source": "int \\u0e50=0;int main(void){return 0;}",
+    "reject": true,
+    "control": false
+  },
+  {
+    "name": "followup-thai-digit-suffix",
+    "source": "int a\\u0e50=8;int main(void){return a\\U00000E50!=8;}",
+    "reject": false,
+    "control": false
+  },
+  {
+    "name": "followup-reject-inactive-bad-ucn",
+    "source": "#if 0\nint \\u03zz;\n#endif\nint main(void){return 0;}",
+    "reject": true,
+    "control": false
+  },
+  {
+    "name": "followup-significant-63-characters",
+    "source": "int \\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2d\\u4e2dX=5;extern int \\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2DY;int main(void){return \\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2D\\U00004E2DY!=5;}",
+    "reject": false,
+    "control": false
+  },
+  {
+    "name": "header-include-guard",
+    "source": "#include \"src/bootstrap-c99/namespace/ucn/ucn.h\"\n#include \"src/bootstrap-c99/namespace/ucn/ucn.h\"\nint \\U00006587=9;int \\U000003B2(int x){return x+\\u6587;}int main(void){return \\u03b2(\\U000003B1)!=26;}",
+    "reject": false,
+    "control": false
+  },
+  {
+    "name": "header-unknown-condition",
+    "source": "#if \\u4e2d\n#error unknown name should be zero\n#endif\nint main(void){return 0;}",
+    "reject": false,
+    "control": false
+  },
+  {
+    "name": "header-condition-equivalence",
+    "source": "#define \\u4e2d 7\n#if \\U00004E2D != 7\n#error mismatch\n#endif\nint main(void){return 0;}",
+    "reject": false,
+    "control": false
+  },
+  {
+    "name": "header-header-undefined",
+    "source": "#include \"src/bootstrap-c99/namespace/ucn/ucn.h\"\n#undef \\U000003B1\n#if defined(\\u03b1)\n#error not undefined\n#endif\nint main(void){return 0;}",
+    "reject": false,
+    "control": false
+  },
+  {
+    "name": "header-location-invalid-initial",
+    "source": "#line 73 \"ucn-location.h\"\nint \\u0660;int main(void){return 0;}",
+    "reject": true,
+    "control": false
+  },
+  {
+    "name": "header-location-truncated",
+    "source": "#line 97 \"ucn-location.h\"\nint \\u03q1;int main(void){return 0;}",
+    "reject": true,
+    "control": false
+  },
+  {
+    "name": "func-encoding-latin-one",
+    "source": "int \\u00e9(void){return sizeof(__func__)!=2 || (unsigned char)__func__[0]!=233 || __func__[1];}int main(void){return \\U000000E9();}",
+    "reject": false,
+    "control": false
+  },
+  {
+    "name": "func-encoding-latin-eight",
+    "source": "int \\U000000E9(void){return sizeof(__func__)!=2 || (unsigned char)__func__[0]!=233 || __func__[1];}int main(void){return \\u00e9();}",
+    "reject": false,
+    "control": false
+  },
+  {
+    "name": "func-encoding-unrepresentable",
+    "source": "int \\u03b1(void){return sizeof(__func__)!=2 || __func__[0]!=63 || __func__[1];}int main(void){return \\U000003B1();}",
+    "reject": false,
+    "control": false
+  },
+  {
+    "name": "func-encoding-mixed-name",
+    "source": "int a\\u00e9_\\u4e2dz(void){char *p=\"a\\u00e9_\\u4e2dz\";int i;if(sizeof(__func__)!=6)return 1;for(i=0;i<6;i++)if(__func__[i]!=p[i])return 1;return 0;}int main(void){return a\\U000000E9_\\U00004E2Dz();}",
+    "reject": false,
+    "control": false
+  },
+  {
+    "name": "func-encoding-macro-name",
+    "source": "#define NAME \\u00e9\nint NAME(void){return sizeof(__func__)!=2 || (unsigned char)__func__[0]!=233;}int main(void){return NAME();}",
+    "reject": false,
+    "control": false
+  },
+  {
+    "name": "func-encoding-ascii-control",
+    "source": "int ascii_name(void){char *p=\"ascii_name\";int i;if(sizeof(__func__)!=11)return 1;for(i=0;i<11;i++)if(__func__[i]!=p[i])return 1;return 0;}int main(void){return ascii_name();}",
+    "reject": false,
+    "control": true
+  },
+  {
+    "name": "func-encoding-distinct-static-arrays",
+    "source": "char *\\u00e9(void){return (char*)__func__;}char *\\u00f1(void){return (char*)__func__;}int main(void){return (unsigned char)*\\u00e9()!=233 || (unsigned char)*\\u00f1()!=241 || \\u00e9()==\\u00f1();}",
+    "reject": false,
+    "control": false
+  },
+  {
+    "name": "func-encoding-full-name-after-significance",
+    "source": "int aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\\u00e9(void){int i;if(sizeof(__func__)!=72)return 1;for(i=0;i<70;i++)if(__func__[i]!=97)return 1;return (unsigned char)__func__[70]!=233 || __func__[71];}int main(void){return aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\\u00e9();}",
+    "reject": false,
+    "control": false
+  }
+]

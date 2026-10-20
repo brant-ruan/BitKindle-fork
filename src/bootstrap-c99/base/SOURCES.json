@@ -1,0 +1,683 @@
+[
+  {
+    "path": "a0.a0"
+  },
+  {
+    "path": "a1.a0"
+  },
+  {
+    "path": "audit.ps1"
+  },
+  {
+    "path": "build-c1.ps1"
+  },
+  {
+    "path": "build.ps1"
+  },
+  {
+    "path": "c0.a1"
+  },
+  {
+    "path": "c1/bootstrap-capacity.c"
+  },
+  {
+    "path": "c1/bootstrap.c"
+  },
+  {
+    "path": "c1/compiler.c"
+  },
+  {
+    "path": "c1/fp-convert.c"
+  },
+  {
+    "path": "c1/fp-eval.c"
+  },
+  {
+    "path": "c1/lexer.c"
+  },
+  {
+    "path": "check-math.ps1"
+  },
+  {
+    "path": "checks/arguments.ps1"
+  },
+  {
+    "path": "checks/assert.ps1"
+  },
+  {
+    "path": "checks/check-combined.ps1"
+  },
+  {
+    "path": "checks/check.ps1"
+  },
+  {
+    "path": "checks/environment.ps1"
+  },
+  {
+    "path": "checks/function-name.ps1"
+  },
+  {
+    "path": "checks/hosted-main.ps1"
+  },
+  {
+    "path": "checks/signals.ps1"
+  },
+  {
+    "path": "checks/tests.ps1"
+  },
+  {
+    "path": "decode_seed.ps1"
+  },
+  {
+    "path": "feature-checks/multichar.ps1"
+  },
+  {
+    "path": "feature-checks/remove-directory.ps1"
+  },
+  {
+    "path": "feature-checks/system-command.ps1"
+  },
+  {
+    "path": "feature-checks/wide-literals.ps1"
+  },
+  {
+    "path": "include/assert.h"
+  },
+  {
+    "path": "include/ctype.h"
+  },
+  {
+    "path": "include/errno.h"
+  },
+  {
+    "path": "include/fenv.h"
+  },
+  {
+    "path": "include/float.h"
+  },
+  {
+    "path": "include/iso646.h"
+  },
+  {
+    "path": "include/limits.h"
+  },
+  {
+    "path": "include/locale.h"
+  },
+  {
+    "path": "include/math.h"
+  },
+  {
+    "path": "include/setjmp.h"
+  },
+  {
+    "path": "include/signal.h"
+  },
+  {
+    "path": "include/stdarg.h"
+  },
+  {
+    "path": "include/stdbool.h"
+  },
+  {
+    "path": "include/stddef.h"
+  },
+  {
+    "path": "include/stdint.h"
+  },
+  {
+    "path": "include/stdio.h"
+  },
+  {
+    "path": "include/stdlib.h"
+  },
+  {
+    "path": "include/string.h"
+  },
+  {
+    "path": "include/time.h"
+  },
+  {
+    "path": "lib/arguments.c"
+  },
+  {
+    "path": "lib/assert.c"
+  },
+  {
+    "path": "lib/clock.c"
+  },
+  {
+    "path": "lib/ctype.c"
+  },
+  {
+    "path": "lib/dynamic-zone.c"
+  },
+  {
+    "path": "lib/environment.c"
+  },
+  {
+    "path": "lib/errno.c"
+  },
+  {
+    "path": "lib/fenv.c"
+  },
+  {
+    "path": "lib/integer.c"
+  },
+  {
+    "path": "lib/locale.c"
+  },
+  {
+    "path": "lib/localtime.c"
+  },
+  {
+    "path": "lib/math-adjacent.c"
+  },
+  {
+    "path": "lib/math-asin.c"
+  },
+  {
+    "path": "lib/math-atan.c"
+  },
+  {
+    "path": "lib/math-atan2.c"
+  },
+  {
+    "path": "lib/math-bits.c"
+  },
+  {
+    "path": "lib/math-classify.c"
+  },
+  {
+    "path": "lib/math-exp.c"
+  },
+  {
+    "path": "lib/math-expm1.c"
+  },
+  {
+    "path": "lib/math-hyperbolic.c"
+  },
+  {
+    "path": "lib/math-integer-power.c"
+  },
+  {
+    "path": "lib/math-log.c"
+  },
+  {
+    "path": "lib/math-log1p.c"
+  },
+  {
+    "path": "lib/math-order.c"
+  },
+  {
+    "path": "lib/math-policy.h"
+  },
+  {
+    "path": "lib/math-pow.c"
+  },
+  {
+    "path": "lib/math-remainder.c"
+  },
+  {
+    "path": "lib/math-rounding.c"
+  },
+  {
+    "path": "lib/math-scale.c"
+  },
+  {
+    "path": "lib/math-sqrt.c"
+  },
+  {
+    "path": "lib/math-trig.c"
+  },
+  {
+    "path": "lib/math.c"
+  },
+  {
+    "path": "lib/memory.c"
+  },
+  {
+    "path": "lib/multibyte.c"
+  },
+  {
+    "path": "lib/process.c"
+  },
+  {
+    "path": "lib/random.c"
+  },
+  {
+    "path": "lib/runtime.c"
+  },
+  {
+    "path": "lib/search.c"
+  },
+  {
+    "path": "lib/setjmp.c"
+  },
+  {
+    "path": "lib/signal.c"
+  },
+  {
+    "path": "lib/stdio-format-decimal.c"
+  },
+  {
+    "path": "lib/stdio-format-hex.c"
+  },
+  {
+    "path": "lib/stdio-format.c"
+  },
+  {
+    "path": "lib/stdio-scan-float.c"
+  },
+  {
+    "path": "lib/stdio-scan.c"
+  },
+  {
+    "path": "lib/stdio-temporary.c"
+  },
+  {
+    "path": "lib/stdio.c"
+  },
+  {
+    "path": "lib/strftime.c"
+  },
+  {
+    "path": "lib/string.c"
+  },
+  {
+    "path": "lib/strtofloat-core.c"
+  },
+  {
+    "path": "lib/strtofloat.c"
+  },
+  {
+    "path": "lib/strtoint.c"
+  },
+  {
+    "path": "lib/system.c"
+  },
+  {
+    "path": "lib/time.c"
+  },
+  {
+    "path": "lib/two-over-pi.h"
+  },
+  {
+    "path": "math-checks/asin/atan-high-precision-tests.ps1"
+  },
+  {
+    "path": "math-checks/asin/atan-tests.ps1"
+  },
+  {
+    "path": "math-checks/asin/check-atan.ps1"
+  },
+  {
+    "path": "math-checks/asin/high-precision-tests.ps1"
+  },
+  {
+    "path": "math-checks/asin/tests.ps1"
+  },
+  {
+    "path": "math-checks/atan/high-precision-tests.ps1"
+  },
+  {
+    "path": "math-checks/atan/tests.ps1"
+  },
+  {
+    "path": "math-checks/atan2/high-precision-tests.ps1"
+  },
+  {
+    "path": "math-checks/atan2/oracle-helpers.ps1"
+  },
+  {
+    "path": "math-checks/atan2/tests.ps1"
+  },
+  {
+    "path": "math-checks/exp/high-precision-tests.ps1"
+  },
+  {
+    "path": "math-checks/exp/tests.ps1"
+  },
+  {
+    "path": "math-checks/expm1/oracle.ps1"
+  },
+  {
+    "path": "math-checks/expm1/random-tests.ps1"
+  },
+  {
+    "path": "math-checks/expm1/tests.ps1"
+  },
+  {
+    "path": "math-checks/hyperbolic/high-precision-tests.ps1"
+  },
+  {
+    "path": "math-checks/hyperbolic/tests.ps1"
+  },
+  {
+    "path": "math-checks/log/high-precision-tests.ps1"
+  },
+  {
+    "path": "math-checks/log/tests.ps1"
+  },
+  {
+    "path": "math-checks/log1p/oracle-helpers.ps1"
+  },
+  {
+    "path": "math-checks/log1p/random-tests.ps1"
+  },
+  {
+    "path": "math-checks/log1p/tests.ps1"
+  },
+  {
+    "path": "math-checks/pow/high-precision-tests.ps1"
+  },
+  {
+    "path": "math-checks/pow/integer-tests.ps1"
+  },
+  {
+    "path": "math-checks/pow/oracle-helpers.ps1"
+  },
+  {
+    "path": "math-checks/pow/tests.ps1"
+  },
+  {
+    "path": "math-checks/trig/edge-tests.ps1"
+  },
+  {
+    "path": "math-checks/trig/high-precision-tests.ps1"
+  },
+  {
+    "path": "math-checks/trig/oracle-helpers.ps1"
+  },
+  {
+    "path": "math-checks/trig/tests.ps1"
+  },
+  {
+    "path": "ps51-compat.ps1"
+  },
+  {
+    "path": "README.zh-CN.md"
+  },
+  {
+    "path": "seed.hex"
+  },
+  {
+    "path": "tests/aggregate-return-abi.c"
+  },
+  {
+    "path": "tests/c0-reverse.c"
+  },
+  {
+    "path": "tests/c0-smoke.c"
+  },
+  {
+    "path": "tests/check-aggregate-return-abi.ps1"
+  },
+  {
+    "path": "tests/check-fp-convert.ps1"
+  },
+  {
+    "path": "tests/factorial.a1"
+  },
+  {
+    "path": "tests/floating-abi.c"
+  },
+  {
+    "path": "tests/floating-eval.c"
+  },
+  {
+    "path": "tests/fp-convert-driver.c"
+  },
+  {
+    "path": "tests/math-scale-environment.c"
+  },
+  {
+    "path": "tests/smoke.a0"
+  },
+  {
+    "path": "tests/test-a0.ps1"
+  },
+  {
+    "path": "tests/test-a1.ps1"
+  },
+  {
+    "path": "tests/test-bitfields.ps1"
+  },
+  {
+    "path": "tests/test-c0.ps1"
+  },
+  {
+    "path": "tests/test-c1-lexer.ps1"
+  },
+  {
+    "path": "tests/test-const-types.ps1"
+  },
+  {
+    "path": "tests/test-core-headers.ps1"
+  },
+  {
+    "path": "tests/test-ctype.ps1"
+  },
+  {
+    "path": "tests/test-diagnostic-reasons.ps1"
+  },
+  {
+    "path": "tests/test-diagnostics.ps1"
+  },
+  {
+    "path": "tests/test-extended-adjacent.ps1"
+  },
+  {
+    "path": "tests/test-extended-order.ps1"
+  },
+  {
+    "path": "tests/test-extended-rounding.ps1"
+  },
+  {
+    "path": "tests/test-extended-setjmp.ps1"
+  },
+  {
+    "path": "tests/test-extended-strtofloat.ps1"
+  },
+  {
+    "path": "tests/test-flexible-arrays.ps1"
+  },
+  {
+    "path": "tests/test-floating-boundary.ps1"
+  },
+  {
+    "path": "tests/test-floating-env.ps1"
+  },
+  {
+    "path": "tests/test-floating-header.ps1"
+  },
+  {
+    "path": "tests/test-floating-ice.ps1"
+  },
+  {
+    "path": "tests/test-floating-runtime.ps1"
+  },
+  {
+    "path": "tests/test-floating-static.ps1"
+  },
+  {
+    "path": "tests/test-floating-types.ps1"
+  },
+  {
+    "path": "tests/test-floating-volatile.ps1"
+  },
+  {
+    "path": "tests/test-floating.ps1"
+  },
+  {
+    "path": "tests/test-includes.ps1"
+  },
+  {
+    "path": "tests/test-integer-conversion.ps1"
+  },
+  {
+    "path": "tests/test-integer-library.ps1"
+  },
+  {
+    "path": "tests/test-integer-modes.ps1"
+  },
+  {
+    "path": "tests/test-locale-library.ps1"
+  },
+  {
+    "path": "tests/test-locations.ps1"
+  },
+  {
+    "path": "tests/test-math-basic.ps1"
+  },
+  {
+    "path": "tests/test-math-classify.ps1"
+  },
+  {
+    "path": "tests/test-math-compare-oracle.ps1"
+  },
+  {
+    "path": "tests/test-math-compare.ps1"
+  },
+  {
+    "path": "tests/test-math-constants.ps1"
+  },
+  {
+    "path": "tests/test-math-oracle.ps1"
+  },
+  {
+    "path": "tests/test-math-remainder.ps1"
+  },
+  {
+    "path": "tests/test-math-scale-oracle.ps1"
+  },
+  {
+    "path": "tests/test-math-scale.ps1"
+  },
+  {
+    "path": "tests/test-math-sqrt.ps1"
+  },
+  {
+    "path": "tests/test-math.ps1"
+  },
+  {
+    "path": "tests/test-memory.ps1"
+  },
+  {
+    "path": "tests/test-null-constants.ps1"
+  },
+  {
+    "path": "tests/test-pragma.ps1"
+  },
+  {
+    "path": "tests/test-runtime-extensions.ps1"
+  },
+  {
+    "path": "tests/test-search-library.ps1"
+  },
+  {
+    "path": "tests/test-stdint.ps1"
+  },
+  {
+    "path": "tests/test-stdio-base.ps1"
+  },
+  {
+    "path": "tests/test-stdio-buffer.ps1"
+  },
+  {
+    "path": "tests/test-stdio-decimal-oracles.ps1"
+  },
+  {
+    "path": "tests/test-stdio-decimal.ps1"
+  },
+  {
+    "path": "tests/test-stdio-default.ps1"
+  },
+  {
+    "path": "tests/test-stdio-format.ps1"
+  },
+  {
+    "path": "tests/test-stdio-hex-oracles.ps1"
+  },
+  {
+    "path": "tests/test-stdio-hex.ps1"
+  },
+  {
+    "path": "tests/test-stdio-integer-oracles.ps1"
+  },
+  {
+    "path": "tests/test-stdio-lifecycle.ps1"
+  },
+  {
+    "path": "tests/test-stdio-platform.ps1"
+  },
+  {
+    "path": "tests/test-stdio-scan-float.ps1"
+  },
+  {
+    "path": "tests/test-stdio-scan-oracles.ps1"
+  },
+  {
+    "path": "tests/test-stdio-scan.ps1"
+  },
+  {
+    "path": "tests/test-stdio-temporary-limit.ps1"
+  },
+  {
+    "path": "tests/test-stdio-temporary.ps1"
+  },
+  {
+    "path": "tests/test-stdio-wide.ps1"
+  },
+  {
+    "path": "tests/test-stdio.ps1"
+  },
+  {
+    "path": "tests/test-string-library.ps1"
+  },
+  {
+    "path": "tests/test-time-macros.ps1"
+  },
+  {
+    "path": "tests/test-variadic-functions.ps1"
+  },
+  {
+    "path": "tests/test-variadic-macros.ps1"
+  },
+  {
+    "path": "tests/test-volatile-restrict.ps1"
+  },
+  {
+    "path": "time-checks/base-tests.ps1"
+  },
+  {
+    "path": "time-checks/check-all.ps1"
+  },
+  {
+    "path": "time-checks/clock-tests.ps1"
+  },
+  {
+    "path": "time-checks/format-tests.ps1"
+  },
+  {
+    "path": "time-checks/history-tests.ps1"
+  },
+  {
+    "path": "time-checks/local-tests.ps1"
+  },
+  {
+    "path": "time-checks/tests-all.ps1"
+  },
+  {
+    "path": "time-checks/tests.ps1"
+  },
+  {
+    "path": "tools/build-pi-table.ps1"
+  },
+  {
+    "path": "tools/pi-table.c"
+  },
+  {
+    "path": "README.md"
+  }
+]
