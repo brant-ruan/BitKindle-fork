@@ -1,0 +1,4 @@
+build/
+*.c1o
+*.o
+.DS_Store
