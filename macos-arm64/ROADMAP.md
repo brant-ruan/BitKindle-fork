@@ -19,10 +19,11 @@
 - [x] 通过全自动端到端集成测试（`test_linker.sh`），目标文件生成、链接与执行验证通过（Exit Code: 42）。
 
 ### 阶段 3：编译器后端 ARM64 代码生成器 (`c1-arm64`)
-- [ ] 复用原 C1 编译器的平台无关前端（词法、预处理、类型系统、语法解析、浮点转换）。
-- [ ] 实现针对 ARM64 的寄存器约定与栈帧分配（AAPCS64 Darwin 变种）。
-- [ ] 实现基本算术、逻辑、内存访问（LDR/STR）、分支（B/BL/CBZ/RET）指令生成。
-- [ ] 打通 `c1-arm64 -> .c1o -> c1link-macho -> 运行` 的单源文件链路。
+- [x] 开发独立的 C 编译器前端与 ARM64 代码生成器（[`c1_arm64.c`](file:///Users/rambo/pjts/BitKindle-fork/macos-arm64/src/compiler/c1_arm64.c)）。
+- [x] 实现 AAPCS64 标准的栈帧控制（`stp/ldp x29, x30`，16 字节栈对齐）。
+- [x] 实现 ARM64 整数运算（`add`, `sub`, `mul`, `sdiv`）、比较条件置位（`cset`）与控制流分支（`cbz`, `b`, `bl`）。
+- [x] 实现了遵循 Apple Silicon ABI 的多参数函数调用与寄存器传递（X0-X7）。
+- [x] 成功打通 `C 源码 -> c1-arm64 -> .c1o 目标文件 -> c1link-macho -> Mach-O 可执行文件 -> 运行验证` 全流程（斐波那契循环与算术计算返回 42）。
 
 ### 阶段 4：Darwin 运行时与标准库适配 (`runtime-darwin`)
 - [ ] 替换原项目的 `KERNEL32.dll` 依赖，重构底层系统接口（`sys_read`, `sys_write`, `sys_mmap`, `sys_exit`）。
