@@ -12,10 +12,11 @@
 - [x] 实现并验证最小独立 Mach-O + ARM64 二进制生成器原型（证明纯字节流拼装在 Apple Silicon 上的可执行性与代码签名机制）。
 
 ### 阶段 2：Mach-O 目标文件链接器 (`c1link-macho`)
-- [ ] 移植并适配 `.c1o` 目标文件读取器。
-- [ ] 编写 `linker/macho.c`，实现原生 64 位 Mach-O 生成（`__PAGEZERO`, `__TEXT`, `__DATA`, `__LINKEDIT`）。
-- [ ] 支持 ARM64 重定位类型（`ARM64_RELOC_BRANCH26`, `ARM64_RELOC_PAGE21`, `ARM64_RELOC_PAGEOFF12`）。
-- [ ] 实现针对 Darwin 的基础动态导入或系统调用桩。
+- [x] 移植并适配 `.c1o` 目标文件读取器与写入器（支持 ARM64 `0xAA64`）。
+- [x] 编写 `linker/macho.c`，实现原生 64 位 Mach-O 生成（`__PAGEZERO`, `__TEXT`, `__DATA`, `__LINKEDIT`）。
+- [x] 支持 ARM64 重定位类型（`LK_ARM64_BRANCH26`, `LK_ARM64_PAGE21`, `LK_ARM64_PAGEOFF12`）。
+- [x] 自动接入 Apple Silicon 现代代码签名（`codesign`）并建立标准 ARM64 启动桩。
+- [x] 通过全自动端到端集成测试（`test_linker.sh`），目标文件生成、链接与执行验证通过（Exit Code: 42）。
 
 ### 阶段 3：编译器后端 ARM64 代码生成器 (`c1-arm64`)
 - [ ] 复用原 C1 编译器的平台无关前端（词法、预处理、类型系统、语法解析、浮点转换）。
