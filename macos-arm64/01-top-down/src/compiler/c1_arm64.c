@@ -874,6 +874,8 @@ int main(int argc, char **argv) {
             outpath = argv[++i];
         } else if (!inpath) {
             inpath = argv[i];
+        } else if (outpath && strcmp(outpath, "a.c1o") == 0) {
+            outpath = argv[i];
         }
     }
 
