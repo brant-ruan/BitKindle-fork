@@ -102,6 +102,8 @@ int main(int argc, char **argv) {
     startup[cursor++] = 0xfd; startup[cursor++] = 0x7b; startup[cursor++] = 0xbf; startup[cursor++] = 0xa9;
     /* mov x29, sp */
     startup[cursor++] = 0xfd; startup[cursor++] = 0x03; startup[cursor++] = 0x00; startup[cursor++] = 0x91;
+    /* 保存 argc, argv 到栈: stp x0, x1, [sp, #-16]! */
+    startup[cursor++] = 0xe0; startup[cursor++] = 0x07; startup[cursor++] = 0xbf; startup[cursor++] = 0xa9;
 
     /* 预留 initializers 的 bl 指令位置 */
     int init_offsets[1024];
@@ -109,6 +111,9 @@ int main(int argc, char **argv) {
         init_offsets[i] = cursor;
         startup[cursor++] = 0x00; startup[cursor++] = 0x00; startup[cursor++] = 0x00; startup[cursor++] = 0x94; /* bl #0 */
     }
+
+    /* 恢复 argc, argv: ldp x0, x1, [sp], #16 */
+    startup[cursor++] = 0xe0; startup[cursor++] = 0x07; startup[cursor++] = 0xc1; startup[cursor++] = 0xa8;
 
     /* 预留 entry 的 bl 指令位置 */
     int entry_call_offset = cursor;

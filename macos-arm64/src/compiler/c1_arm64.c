@@ -558,9 +558,10 @@ static void parse_statement(void) {
     if (token == '{') {
         parse_block();
     } else if (token == TK_INT || token == TK_CHAR) {
-        /* 变量声明: int a = 10; */
+        /* 变量声明: int a = 10; char *p; */
         next_token();
         while (1) {
+            while (token == '*') next_token();
             if (token != TK_IDENT)
                 error("expected identifier in declaration");
             char name[64];
@@ -678,7 +679,8 @@ static void parse_function(void) {
 
     if (token != ')' && token != TK_VOID) {
         while (1) {
-            next_token(); /* int */
+            next_token(); /* int / char */
+            while (token == '*') next_token();
             if (token != TK_IDENT)
                 error("expected parameter name");
             char param_name[64];
