@@ -79,6 +79,16 @@ struct Fixup {
 static struct Fixup fixups[MAX_FIXUPS];
 static int fixup_count = 0;
 
+/* 字符串常量池与回填 */
+static char string_pool[65536];
+static int string_pool_len = 0;
+struct StringRef {
+    int str_pool_offset;
+    int code_patch_pos;
+};
+static struct StringRef string_refs[1024];
+static int string_ref_count = 0;
+
 static int current_stack_size = 0;
 static int local_sym_start = 0;
 
@@ -165,6 +175,52 @@ static void next_token(void) {
             token = TK_NUM;
             token_val = val;
             snprintf(token_str, sizeof(token_str), "%d", val);
+            return;
+        }
+
+        /* 字符串字面量 "..." */
+        if (c == '"') {
+            src_pos++;
+            int start = string_pool_len;
+            while (src_pos < source_len && source[src_pos] != '"') {
+                if (source[src_pos] == '\\') {
+                    src_pos++;
+                    if (source[src_pos] == 'n') string_pool[string_pool_len++] = '\n';
+                    else if (source[src_pos] == 't') string_pool[string_pool_len++] = '\t';
+                    else if (source[src_pos] == 'r') string_pool[string_pool_len++] = '\r';
+                    else if (source[src_pos] == '\\') string_pool[string_pool_len++] = '\\';
+                    else if (source[src_pos] == '"') string_pool[string_pool_len++] = '"';
+                    else string_pool[string_pool_len++] = source[src_pos];
+                } else {
+                    if (source[src_pos] == '\n') line_num++;
+                    string_pool[string_pool_len++] = source[src_pos];
+                }
+                src_pos++;
+            }
+            if (src_pos < source_len) src_pos++;
+            string_pool[string_pool_len++] = '\0';
+            token = TK_STR;
+            token_val = start;
+            strcpy(token_str, "<string>");
+            return;
+        }
+
+        /* 字符常量 'A' */
+        if (c == '\'') {
+            src_pos++;
+            char ch = source[src_pos++];
+            if (ch == '\\') {
+                char esc = source[src_pos++];
+                if (esc == 'n') ch = '\n';
+                else if (esc == 't') ch = '\t';
+                else if (esc == 'r') ch = '\r';
+                else if (esc == '0') ch = '\0';
+                else ch = esc;
+            }
+            if (source[src_pos] == '\'') src_pos++;
+            token = TK_NUM;
+            token_val = (int)(unsigned char)ch;
+            snprintf(token_str, sizeof(token_str), "%d", token_val);
             return;
         }
 
@@ -334,6 +390,14 @@ static void parse_primary(void) {
             }
             emit_load_local(sym->stack_offset);
         }
+    } else if (token == TK_STR) {
+        int pool_off = token_val;
+        next_token();
+        string_refs[string_ref_count].str_pool_offset = pool_off;
+        string_refs[string_ref_count].code_patch_pos = code_pos;
+        string_ref_count++;
+        /* 预留 adr x0, #0 指令 (0x10000000) 稍后回填 */
+        emit(0x10000000);
     } else if (token == '(') {
         match('(');
         parse_expression();
@@ -692,6 +756,25 @@ static void parse_translation_unit(void) {
 
 /* ==================== 生成 .c1o 目标文件 ==================== */
 static int emit_c1o_object(const char *outpath) {
+    /* 0. 将字符串常量池追加到代码节末尾，并回填所有 adr 指令 */
+    int strings_start_byte = code_pos * 4;
+    if (string_pool_len > 0) {
+        memcpy((char *)code_buf + strings_start_byte, string_pool, string_pool_len);
+        int added_words = (string_pool_len + 3) / 4;
+
+        int i;
+        for (i = 0; i < string_ref_count; i++) {
+            int patch_pos = string_refs[i].code_patch_pos;
+            int target_byte = strings_start_byte + string_refs[i].str_pool_offset;
+            int pc_byte = patch_pos * 4;
+            int delta = target_byte - pc_byte;
+            uint32_t immlo = ((uint32_t)delta) & 3;
+            uint32_t immhi = (((uint32_t)delta) >> 2) & 0x7FFFF;
+            code_buf[patch_pos] = 0x10000000 | (immlo << 29) | (immhi << 5) | 0; /* Rd = x0 */
+        }
+        code_pos += added_words;
+    }
+
     /* 1. 构造代码节 */
     struct lk_section sec;
     memset(&sec, 0, sizeof(sec));
@@ -703,7 +786,7 @@ static int emit_c1o_object(const char *outpath) {
 
     unsigned char *payload = (unsigned char *)code_buf;
 
-    /* 2. 导出符号表 (筛选出全局符号) */
+    /* 2. 导出符号表 (筛选出全局与外部符号) */
     struct lk_symbol export_syms[MAX_SYMBOLS];
     int export_count = 0;
 
@@ -712,10 +795,19 @@ static int emit_c1o_object(const char *outpath) {
         if (symbols[i].is_global) {
             memset(&export_syms[export_count], 0, sizeof(struct lk_symbol));
             export_syms[export_count].name = symbols[i].name;
-            export_syms[export_count].binding = LK_GLOBAL;
-            export_syms[export_count].section = 0; /* 属于代码节 */
-            export_syms[export_count].value = symbols[i].value;
-            export_syms[export_count].size = symbols[i].size;
+            if (symbols[i].size > 0) {
+                /* 本文件内定义的全局函数 */
+                export_syms[export_count].binding = LK_GLOBAL;
+                export_syms[export_count].section = 0; /* 属于代码节 */
+                export_syms[export_count].value = symbols[i].value;
+                export_syms[export_count].size = symbols[i].size;
+            } else {
+                /* 外部引用的未定义符号 */
+                export_syms[export_count].binding = LK_UNDEFINED;
+                export_syms[export_count].section = 0xffffffff;
+                export_syms[export_count].value = 0;
+                export_syms[export_count].size = 0;
+            }
             export_syms[export_count].alignment = 4;
             export_count++;
         }

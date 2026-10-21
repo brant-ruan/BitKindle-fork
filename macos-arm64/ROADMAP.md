@@ -26,9 +26,11 @@
 - [x] 成功打通 `C 源码 -> c1-arm64 -> .c1o 目标文件 -> c1link-macho -> Mach-O 可执行文件 -> 运行验证` 全流程（斐波那契循环与算术计算返回 42）。
 
 ### 阶段 4：Darwin 运行时与标准库适配 (`runtime-darwin`)
-- [ ] 替换原项目的 `KERNEL32.dll` 依赖，重构底层系统接口（`sys_read`, `sys_write`, `sys_mmap`, `sys_exit`）。
-- [ ] 接入并调试 C 标准库基础功能（`stdio`, `stdlib`, `string`, `math`）。
-- [ ] 验证语言功能与标准库回归用例。
+- [x] 开发 Darwin 纯自包含运行时模块（[`build_runtime.c`](file:///Users/rambo/pjts/BitKindle-fork/macos-arm64/src/runtime/build_runtime.c)），生成 `runtime.c1o`。
+- [x] 基于 Darwin 裸系统调用（`svc #0x80`）实现系统 I/O 与退出（`sys_write`, `sys_exit`）。
+- [x] 实现并导出基础标准库 I/O 函数（`putchar`, `print`, `puts`, `print_int`）。
+- [x] 在 `c1-arm64` 编译器中新增支持字符串字面量常量池与未定义外部符号导出（`LK_UNDEFINED`）。
+- [x] 完成全自动跨模块静态链接与控制台标准输出端到端验收（[`test_runtime.sh`](file:///Users/rambo/pjts/BitKindle-fork/macos-arm64/scripts/test_runtime.sh)）。
 
 ### 阶段 5：自举闭环（Self-Hosting）与反推极简种子
 - [ ] 用新工具链自编译自身源码，完成第一代与第二代逐字节一致性校验。
