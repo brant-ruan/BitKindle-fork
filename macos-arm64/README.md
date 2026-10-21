@@ -115,6 +115,12 @@ All three applications from the original repository are ported, functional, and 
        PASS state=2 ticks=1634 x=6339 coins=10 boxes=9 mushrooms=1 goombas=11 turtles=3 kicks=2 shellkills=0 loose=2 hurts=0
        ```
        (Clears the entire level in 1634 ticks without taking damage, reaching the flagpole to win).
+4. **`mario-extended` Native macOS Cocoa Interactive Window Edition**:
+   - Location: `src/examples/mario-extended/`;
+   - **Zero Third-Party Dependencies**: Written purely in C and Objective-C linking system-native `-framework Cocoa`;
+   - Spawns a native 960×544 game window running at 60 FPS with responsive keyboard controls (A/D to move, Space/W to jump, Shift to dash, P to pause, R to restart, ESC to quit);
+   - Launch and play interactively on your Mac screen: `./01-top-down/src/examples/mario-extended/build.sh --run`;
+   - Or watch the AI clear World 1-1 live in a window: `./01-top-down/src/examples/mario-extended/build.sh --demo`.
 
 ---
 

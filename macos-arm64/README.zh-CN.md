@@ -113,6 +113,12 @@ Exit Code: 42 (PASS)
        PASS state=2 ticks=1634 x=6339 coins=10 boxes=9 mushrooms=1 goombas=11 turtles=3 kicks=2 shellkills=0 loose=2 hurts=0
        ```
        （耗时 1634 帧，无伤跑完全图，吃 10 枚金币，顶 9 个方块，踩死 11 只板栗仔、3 只乌龟，踢了 2 次龟壳，最终到达终点旗杆夺旗！）
+4. **`mario-extended` 原生 macOS Cocoa 交互式游戏窗口版**：
+   - 路径：`src/examples/mario-extended/`；
+   - **零第三方库依赖**：纯 C 与 Objective-C 编写，直接链接系统内置 `-framework Cocoa`；
+   - 启动原生 960×544 游戏窗口，以 60 FPS 流畅运行，支持键盘实时控制（A/D 移动，空格/W 跳跃，Shift 奔跑，P 暂停，R 重启，ESC 退出）；
+   - 一键直接在 Mac 屏幕上游玩：`./01-top-down/src/examples/mario-extended/build.sh --run`；
+   - 亦可弹窗实时观摩 AI 自动通关全过程：`./01-top-down/src/examples/mario-extended/build.sh --demo`。
 
 ---
 
