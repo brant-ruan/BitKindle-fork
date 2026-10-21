@@ -128,17 +128,9 @@ int main(int argc, char **argv) {
     build_ver.tool.tool = TOOL_LD;
     build_ver.tool.version = 0;
 
-    /* Command 7: LC_CODE_SIGNATURE */
-    struct linkedit_data_command code_sig;
-    memset(&code_sig, 0, sizeof(code_sig));
-    code_sig.cmd = LC_CODE_SIGNATURE;
-    code_sig.cmdsize = sizeof(code_sig);
-    code_sig.dataoff = PAGE_SIZE; /* 位于 __LINKEDIT 起始位置 */
-    code_sig.datasize = 0x200;    /* 预留签名槽位 */
-
-    /* 计算 load commands 总大小 */
+    /* 计算 load commands 总大小 (无需预留 LC_CODE_SIGNATURE，由 codesign 自动追加) */
     uint32_t total_cmds_size = sizeof(seg_pagezero) + sizeof(seg_text) + sizeof(seg_linkedit) +
-                               sizeof(dylinker) + sizeof(entry_cmd) + sizeof(build_ver) + sizeof(code_sig);
+                               sizeof(dylinker) + sizeof(entry_cmd) + sizeof(build_ver);
 
     struct mach_header_64 header;
     memset(&header, 0, sizeof(header));
@@ -146,12 +138,12 @@ int main(int argc, char **argv) {
     header.cputype = CPU_TYPE_ARM64;
     header.cpusubtype = CPU_SUBTYPE_ARM64_ALL;
     header.filetype = MH_EXECUTE;
-    header.ncmds = 7;
+    header.ncmds = 6;
     header.sizeofcmds = total_cmds_size;
     header.flags = MH_NOUNDEFS | MH_DYLDLINK | MH_TWOLEVEL | MH_PIE;
 
-    /* 确定代码存放位置（紧随 Load Commands 之后，16 字节对齐） */
-    uint32_t text_fileoff = (sizeof(header) + total_cmds_size + 15) & ~15;
+    /* 确定代码存放位置（4KB 处，为头部预留安全间隙） */
+    uint32_t text_fileoff = 0x1000;
 
     strncpy(seg_text.text_sec.sectname, "__text", sizeof(seg_text.text_sec.sectname));
     strncpy(seg_text.text_sec.segname, "__TEXT", sizeof(seg_text.text_sec.segname));
@@ -179,7 +171,6 @@ int main(int argc, char **argv) {
     memcpy(file_buffer + cursor, &dylinker, sizeof(dylinker)); cursor += sizeof(dylinker);
     memcpy(file_buffer + cursor, &entry_cmd, sizeof(entry_cmd)); cursor += sizeof(entry_cmd);
     memcpy(file_buffer + cursor, &build_ver, sizeof(build_ver)); cursor += sizeof(build_ver);
-    memcpy(file_buffer + cursor, &code_sig, sizeof(code_sig)); cursor += sizeof(code_sig);
 
     /* 写入机器码与消息文本 */
     memcpy(file_buffer + text_fileoff, code, code_bytes);

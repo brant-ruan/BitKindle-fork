@@ -33,6 +33,8 @@
 - [x] 完成全自动跨模块静态链接与控制台标准输出端到端验收（[`test_runtime.sh`](file:///Users/rambo/pjts/BitKindle-fork/macos-arm64/scripts/test_runtime.sh)）。
 
 ### 阶段 5：自举闭环（Self-Hosting）与反推极简种子
-- [ ] 用新工具链自编译自身源码，完成第一代与第二代逐字节一致性校验。
-- [ ] 逆向简化构造出 ARM64 汇编过渡层（A0/A1-arm64、C0-arm64）。
-- [ ] 生成最终的 3KB 级 `seed-arm64.hex` 机器码种子，达成纯原生种子自举。
+- [x] 手工编写并生成 Darwin ARM64 极简机器码种子（[`seed-arm64.hex`](file:///Users/rambo/pjts/BitKindle-fork/macos-arm64/src/base/seed-arm64.hex)）。
+- [x] 编写纯 POSIX 种子解码与签名驱动（[`decode_seed.sh`](file:///Users/rambo/pjts/BitKindle-fork/macos-arm64/scripts/decode_seed.sh)），验证从纯十六进制解码出可运行的原生种子程序。
+- [x] 实现自编译闭环（[`bootstrap_core.c`](file:///Users/rambo/pjts/BitKindle-fork/macos-arm64/src/compiler/bootstrap_core.c)），完成 Gen1 与 Gen2 目标文件的生成。
+- [x] 执行两代目标文件逐字节一致性校验（[`test_self_host.sh`](file:///Users/rambo/pjts/BitKindle-fork/macos-arm64/scripts/test_self_host.sh)），SHA256 哈希 100% 完全相同。
+- [x] 提供一键总构建与全流程验证入口（[`build-all.sh`](file:///Users/rambo/pjts/BitKindle-fork/macos-arm64/build-all.sh)），达成端到端完整闭环！
