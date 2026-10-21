@@ -1,6 +1,6 @@
 # BitKindle macOS (Darwin ARM64) - 顶层整体自举工具链 (01-top-down)
 
-本项目是原版基于 Windows x64 的 BitKindle 极简 C 自举编译工具链在 Apple Silicon (macOS Darwin ARM64) 架构上的原生移植与打通实现。
+本项目基于 tombkeeper 的 BitKindle 原创项目，是在 Apple Silicon (macOS Darwin ARM64) 架构上的原生移植与打通实现。
 
 `01-top-down` 目录提供了**工程化、高内聚、端到端一体化**的顶层视图：整个自举编译器、链接器、运行时以及三大应用程序紧密协同，构成完整的系统级生产管线。
 

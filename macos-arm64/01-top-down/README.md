@@ -1,6 +1,6 @@
 # BitKindle macOS (Darwin ARM64) - Integrated Top-Down Architecture (01-top-down)
 
-This directory provides the Apple Silicon (macOS Darwin ARM64) native port of BitKindle's minimalist C self-hosting compilation and bootstrap toolchain, originally targeting Windows x64.
+This directory provides the Apple Silicon (macOS Darwin ARM64) port of BitKindle, based on the original Windows x64 self-hosting project created by tombkeeper.
 
 `01-top-down` represents the **engineering-grade, cohesive, and end-to-end integrated** system view: the bootstrap compiler, linker, runtime, and all three application suites work seamlessly together in an automated production pipeline.
 

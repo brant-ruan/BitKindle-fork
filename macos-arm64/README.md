@@ -1,23 +1,22 @@
-# BitKindle macOS (Darwin ARM64) Complete Self-Hosting Port & Implementation
+# BitKindle macOS (Darwin ARM64) Port & Implementation
 
+> This project is a macOS Apple Silicon port based on the original [BitKindle](https://github.com/tombkeeper/BitKindle) created by **[tombkeeper](https://github.com/tombkeeper)**.
+>
 > **Model Attribution**:  
-> The complete architectural design, assembly & C source code implementation, Mach-O linker development, AAPCS64 compiler backend, two-generation byte-for-byte deterministic closure, and regression suites for all three applications on macOS Apple Silicon (Darwin ARM64) were independently engineered, implemented, and verified by the **Gemini 3.8 Flash (Medium)** model.
+> The macOS Apple Silicon (Darwin ARM64) port, architecture adaptation, and test suites were implemented and verified with the assistance of the **Gemini 3.8 Flash (Medium)** model.
 
 ---
 
-## 1. Project Motivation & Porting Philosophy
+## 1. Project Background & Porting Motivation
 
-### Why Reproduce BitKindle on Apple Silicon?
-The original BitKindle is a tour de force in bootstrap compiler design, but its initial implementation was inextricably bound to **Windows x64** (x86-64 CISC instruction set, PE32+ file format, Win32/WinHTTP APIs, and Microsoft x64 ABI).
+BitKindle is a minimalist C self-hosting compilation system originally created for Windows x64. Its core approach starts from a small seed of raw hexadecimal machine code, incrementally constructing a linker, C compiler, and minimal runtime until the compiler can successfully build itself.
 
-In computer systems engineering, the genuine philosophy of **self-hosting** is universal: **regardless of the underlying CPU architecture or OS kernel syscall mechanics, we should be able to sprout an entire compiler, linker, runtime, and software ecosystem from an irreducible seed of transparent hexadecimal machine code.**
+The original implementation targets Windows x64 (x86-64 ISA, PE32+ binary format, and Win32 APIs). This project ports that self-hosting workflow to **Apple Silicon (macOS Darwin ARM64)** to explore how the same bootstrapping approach operates under a different hardware and OS ecosystem:
+- **CPU Architecture**: Transitioning from x86-64 CISC to ARM64 (AArch64) RISC, accommodating fixed 32-bit instructions and the AAPCS64 calling convention;
+- **Executable Format**: Transitioning from PE32+ to 64-bit Mach-O, while complying with Apple Silicon's 16KB physical page alignment and AMFI code-signing requirements;
+- **Syscalls & Runtime**: Removing Windows-specific APIs in favor of self-contained runtime routines built directly on raw Darwin `svc #0x80` system calls.
 
-macOS Apple Silicon (Darwin ARM64) represents one of the most stringent and modern computing environments:
-- It adopts the **AArch64 RISC architecture** (fixed 32-bit instruction width, Load/Store memory model, and strict AAPCS64 calling conventions);
-- It enforces rigorous hardware and OS security constraints: **mandatory 16KB physical page alignment** and **kernel-enforced Apple Mobile File Integrity (AMFI) code signing**;
-- Its binary container is **64-bit Mach-O**, loaded by dyld, invoking syscalls via BSD-style semantics through `svc #0x80`.
-
-Porting BitKindle to Darwin ARM64 provides both an empirical validation of cross-architecture self-hosting principles and a modern, textbook-grade demonstration of low-level systems programming on Apple Silicon.
+This port aims to provide a practical, transparent reference for developers and students exploring bootstrap compilation and low-level systems programming on modern Apple Silicon hardware.
 
 ---
 

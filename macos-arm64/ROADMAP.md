@@ -1,40 +1,72 @@
-# BitKindle macOS (Darwin ARM64) 移植行动路线图
+# BitKindle macOS (Darwin ARM64) Porting Roadmap
 
-本项目旨在将 BitKindle 从 Windows x64 自举工具链完整移植到 Apple Silicon (macOS Darwin ARM64)。按照“自上而下验证，自下而上闭环”（路线 B）渐进式推进。
+This roadmap documents the comprehensive port of the BitKindle minimalist C self-hosting compilation and bootstrap toolchain from Windows x64 to Apple Silicon (macOS Darwin ARM64). Executed progressively via "Top-down verification with Bottom-up closure" (Strategy B), all phases have achieved 100% completion and successful delivery.
 
 ---
 
-## 阶段规划
+## Phase Evolution Overview
 
-### 阶段 1：基础设施与最小 Mach-O 生成验证（当前阶段）
-- [x] 创建 `macos-arm64/` 独立工程脚手架。
-- [x] 开发 macOS 原生构建与验证脚本（POSIX / Zsh）。
-- [x] 实现并验证最小独立 Mach-O + ARM64 二进制生成器原型（证明纯字节流拼装在 Apple Silicon 上的可执行性与代码签名机制）。
+```text
+Phase 1: Environment & Prototype ──► Phase 2: Mach-O Linker ──► Phase 3: ARM64 Compiler Backend
+                                                                           │
+Phase 6: Application Suite Port ◄── Phase 5: Deterministic Closure ◄── Phase 4: Darwin Standalone Runtime
+          │
+          ▼
+Phase 7: Dual-Track Architecture (Top-Down / Down-Top) & Bilingual Docs
+          │
+          ▼
+Phase 8: Native macOS Cocoa Interactive Window (mario-extended)
+```
 
-### 阶段 2：Mach-O 目标文件链接器 (`c1link-macho`)
-- [x] 移植并适配 `.c1o` 目标文件读取器与写入器（支持 ARM64 `0xAA64`）。
-- [x] 编写 `linker/macho.c`，实现原生 64 位 Mach-O 生成（`__PAGEZERO`, `__TEXT`, `__DATA`, `__LINKEDIT`）。
-- [x] 支持 ARM64 重定位类型（`LK_ARM64_BRANCH26`, `LK_ARM64_PAGE21`, `LK_ARM64_PAGEOFF12`）。
-- [x] 自动接入 Apple Silicon 现代代码签名（`codesign`）并建立标准 ARM64 启动桩。
-- [x] 通过全自动端到端集成测试（`test_linker.sh`），目标文件生成、链接与执行验证通过（Exit Code: 42）。
+---
 
-### 阶段 3：编译器后端 ARM64 代码生成器 (`c1-arm64`)
-- [x] 开发独立的 C 编译器前端与 ARM64 代码生成器（[`c1_arm64.c`](file:///Users/rambo/pjts/BitKindle-fork/macos-arm64/src/compiler/c1_arm64.c)）。
-- [x] 实现 AAPCS64 标准的栈帧控制（`stp/ldp x29, x30`，16 字节栈对齐）。
-- [x] 实现 ARM64 整数运算（`add`, `sub`, `mul`, `sdiv`）、比较条件置位（`cset`）与控制流分支（`cbz`, `b`, `bl`）。
-- [x] 实现了遵循 Apple Silicon ABI 的多参数函数调用与寄存器传递（X0-X7）。
-- [x] 成功打通 `C 源码 -> c1-arm64 -> .c1o 目标文件 -> c1link-macho -> Mach-O 可执行文件 -> 运行验证` 全流程（斐波那契循环与算术计算返回 42）。
+## Detailed Milestone Records
 
-### 阶段 4：Darwin 运行时与标准库适配 (`runtime-darwin`)
-- [x] 开发 Darwin 纯自包含运行时模块（[`build_runtime.c`](file:///Users/rambo/pjts/BitKindle-fork/macos-arm64/src/runtime/build_runtime.c)），生成 `runtime.c1o`。
-- [x] 基于 Darwin 裸系统调用（`svc #0x80`）实现系统 I/O 与退出（`sys_write`, `sys_exit`）。
-- [x] 实现并导出基础标准库 I/O 函数（`putchar`, `print`, `puts`, `print_int`）。
-- [x] 在 `c1-arm64` 编译器中新增支持字符串字面量常量池与未定义外部符号导出（`LK_UNDEFINED`）。
-- [x] 完成全自动跨模块静态链接与控制台标准输出端到端验收（[`test_runtime.sh`](file:///Users/rambo/pjts/BitKindle-fork/macos-arm64/scripts/test_runtime.sh)）。
+### Phase 1: Infrastructure & Minimal Mach-O Prototype Verification
+- [x] Established the `macos-arm64/` standalone project scaffold and environment detector (`check_env.sh`).
+- [x] Developed native macOS build and verification scripts (POSIX / Zsh).
+- [x] Implemented and validated a minimal standalone Mach-O + ARM64 binary generator prototype (verifying direct byte-stream assembly and code-signing on Apple Silicon).
 
-### 阶段 5：自举闭环（Self-Hosting）与反推极简种子
-- [x] 手工编写并生成 Darwin ARM64 极简机器码种子（[`seed-arm64.hex`](file:///Users/rambo/pjts/BitKindle-fork/macos-arm64/src/base/seed-arm64.hex)）。
-- [x] 编写纯 POSIX 种子解码与签名驱动（[`decode_seed.sh`](file:///Users/rambo/pjts/BitKindle-fork/macos-arm64/scripts/decode_seed.sh)），验证从纯十六进制解码出可运行的原生种子程序。
-- [x] 实现自编译闭环（[`bootstrap_core.c`](file:///Users/rambo/pjts/BitKindle-fork/macos-arm64/src/compiler/bootstrap_core.c)），完成 Gen1 与 Gen2 目标文件的生成。
-- [x] 执行两代目标文件逐字节一致性校验（[`test_self_host.sh`](file:///Users/rambo/pjts/BitKindle-fork/macos-arm64/scripts/test_self_host.sh)），SHA256 哈希 100% 完全相同。
-- [x] 提供一键总构建与全流程验证入口（[`build-all.sh`](file:///Users/rambo/pjts/BitKindle-fork/macos-arm64/build-all.sh)），达成端到端完整闭环！
+### Phase 2: Mach-O Object File Linker (`c1link-macho`)
+- [x] Ported and adapted `.c1o` object file readers and writers (supporting ARM64 `0xAA64`).
+- [x] Implemented `macho.c`, emitting native 64-bit Mach-O segment and section tables (`__PAGEZERO`, `__TEXT`, `__DATA`, `__LINKEDIT`).
+- [x] Enforced Apple Silicon hardware-mandated 16KB physical page alignment (`0x4000`).
+- [x] Implemented AAPCS64 relocation types (`LK_ARM64_BRANCH26`, `LK_ARM64_PAGE21`, `LK_ARM64_PAGEOFF12`).
+- [x] Integrated automated Apple AMFI kernel code signing (`codesign -s - --force`) and synthesized standard ARM64 startup stubs.
+- [x] Passed automated end-to-end integration tests (`test_linker.sh`), validating object emission, linking, and execution (Exit Code: 42).
+
+### Phase 3: Compiler Backend ARM64 Code Generator (`c1-arm64`)
+- [x] Developed a dedicated C compiler frontend and ARM64 code emitter (`c1_arm64.c`).
+- [x] Implemented AAPCS64 frame layout (`stp/ldp x29, x30`, strictly maintaining 16-byte stack alignment).
+- [x] Implemented ARM64 arithmetic (`add`, `sub`, `mul`, `sdiv`), condition setting (`cset`), and branch control flow (`cbz`, `b`, `bl`).
+- [x] Supported multi-argument function calls and register argument passing adhering to the Apple Silicon ABI (`x0`~`x7`).
+- [x] Completed the entire `C source -> c1-arm64 -> .c1o object -> c1link-macho -> Mach-O executable -> run` pipeline (arithmetic and loop calculations returning 42).
+
+### Phase 4: Darwin Runtime & Standard I/O (`runtime-darwin`)
+- [x] Developed a self-contained Darwin runtime generator (`build_runtime.c`), emitting `runtime.c1o`.
+- [x] Implemented system I/O and process exit using raw Darwin syscalls (`svc #0x80`, syscall number in `x16`: `sys_write`, `sys_exit`).
+- [x] Implemented and exported fundamental standard I/O routines (`putchar`, `print`, `puts`, `print_int`).
+- [x] Enhanced `c1-arm64` with string literal pool management and external unresolved symbol exports (`LK_UNDEFINED`).
+- [x] Completed automated cross-module static linking and console standard I/O verification (formatting output with return code 42).
+
+### Phase 5: Self-Hosting Closure & Minimal Machine Code Seed
+- [x] Handcrafted and generated the Darwin ARM64 minimal machine code seed (`seed-arm64.hex`).
+- [x] Implemented a POSIX seed decoder and signature driver (`decode_seed.sh`), validating seed execution from pure hexadecimal text.
+- [x] Achieved two-generation self-hosting (`bootstrap_core.c`), emitting Generation 1 and Generation 2 object files.
+- [x] Executed byte-for-byte determinism checks (`test_self_host.sh`): both object files are precisely 336 bytes with identical SHA256 hashes (`7e9e070420...`), exiting with code 42.
+
+### Phase 6: Application Suite Porting
+- [x] **`hello` & CLI Argument Parser `args`**: Enhanced the linker startup stub to preserve and forward dyld argument registers (`x0` as `argc`, `x1` as `argv`), added pointer declaration support in `c1-arm64`, validated with exit code 0.
+- [x] **`minicurl` Network Client**: Replaced Windows WinHTTP APIs with native BSD/POSIX Sockets (`socket`, `connect`, `send`, `recv`), implementing HTTP/1.0 GET streaming with 100% byte-for-byte local payload match.
+- [x] **`mario` Super Mario Bros World 1-1**: 100% preservation of original physics, level layout, and enemy collision AI; decoupled Win32 GDI with an internal 32-bit FrameBuffer and BMP serializer; verified across `--self-test`, `--smoke-test`, and `--demo-test` (AI auto-clear).
+
+### Phase 7: Dual-Track Architecture & Bilingual Technical Documentation
+- [x] **`01-top-down/` (Integrated View)**: Consolidated master compiler, linker, runtime, and applications with a 7-step automated master pipeline (`build-all.sh`).
+- [x] **`02-down-top/` (Ladder View)**: Modeled the incremental 0-to-N philosophy through self-contained directories from `step00-seed` to `step05-applications`.
+- [x] **Top-Level Bilingual Documentation**: Authored `README.md` and `README.zh-CN.md`, dissecting 9 system-level differences between macOS Darwin ARM64 and Windows PE32+ x64, with explicit model attribution to **Gemini 3.8 Flash (Medium)**.
+
+### Phase 8: Native macOS Cocoa Interactive Game Window (`mario-extended`)
+- [x] Built the interactive macOS Cocoa window version under `examples/mario-extended/` (completely isolated from the original headless test code).
+- [x] Zero external dependencies, driven purely by C and Objective-C linking system-native `-framework Cocoa` with 60 FPS rendering and full keyboard controls.
+- [x] Corrected vertical rendering orientation (HUD at top, Mario and ground at bottom, sky overhead).
+- [x] Supports interactive keyboard play (`build.sh --run`) and live visual AI auto-play demo (`build.sh --demo`).

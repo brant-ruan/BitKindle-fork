@@ -2,9 +2,9 @@
 
 ## Overview
 
-While `01-top-down` provides the **high-level integrated system view**, `02-down-top` faithfully captures the quintessential spirit of BitKindle: **climbing the bootstrap ladder step by step from Zero (0) to Infinity (N)**.
+While `01-top-down` provides the **high-level integrated system view**, `02-down-top` follows the incremental bottom-up bootstrapping path designed by original author tombkeeper: starting from a transparent hex seed and progressively building up the linker, compiler, runtime, and applications.
 
-Each directory is a self-contained, individually verifiable milestone, illustrating how a modern software ecosystem is created out of nothing.
+Each directory is a self-contained, individually verifiable milestone demonstrating the bottom-up progression.
 
 ---
 

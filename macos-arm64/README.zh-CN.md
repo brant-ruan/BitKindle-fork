@@ -1,23 +1,22 @@
-# BitKindle macOS (Darwin ARM64) 完整自举移植与实现体系
-
+# BitKindle macOS (Darwin ARM64) 移植与自举实现
+ 
+> 本项目基于 **[tombkeeper](https://github.com/tombkeeper)** 原创的 [BitKindle](https://github.com/tombkeeper/BitKindle) 项目移植构建。
+>
 > **模型注明 (Model Attribution)**：  
-> 本项目 macOS Apple Silicon (Darwin ARM64) 平台的全套自举移植、架构设计、汇编/C语言代码实现、两代确定性闭环验证及三大应用程序移植，全部由 **Gemini 3.8 Flash (Medium)** 模型独立设计、编写、重构与回归打通。
+> 本项目的 macOS Apple Silicon (Darwin ARM64) 平台适配与自举移植实现，由 **Gemini 3.8 Flash (Medium)** 模型协助完成架构设计、代码编写与测试验证。
 
 ---
 
-## 一、项目背景与复现打通思路
+## 一、项目背景与复现思路
 
-### 1. 为什么要在 macOS Apple Silicon 上复现？
-原版 BitKindle 是一个震撼人心的极简 C 语言自举编译工具链项目，但其原生实现深度绑定了 **Windows x64 平台**（x86-64 架构、PE32+ 容器格式、Win32/WinHTTP API、Microsoft x64 ABI）。
+BitKindle 原版是一套运行于 Windows x64 平台上的极简 C 自举编译系统，其核心思想是从一小段裸十六进制机器码（Seed）出发，一步步构建出链接器、C 编译器和运行库，并最终实现自举。
 
-在计算机科学与系统工程领域，真正的“自举（Self-Hosting）”哲学具有普适性：**无论底层的 CPU 架构如何变化、操作系统的系统调用机制如何演进，我们都应当能够从一段几乎等同于“硬件通电”的极简机器码种子（Seed）出发，纯手工构建出编译器、链接器、运行时以及复杂的应用程序。**
+原版的实现紧密贴合 Windows x64 平台的特性（x86-64 指令集、PE32+ 格式、Win32 API）。本项目尝试将这一自举流程完整移植到 **Apple Silicon (macOS Darwin ARM64)** 平台，探索不同软硬件生态下的自举实践：
+- **CPU 架构**：从 x86-64 CISC 切换为 ARM64 (AArch64) RISC，处理固定的 32 位指令编码与 AAPCS64 调用规约；
+- **可执行文件格式**：从 Windows PE32+ 切换为 macOS 64 位 Mach-O，并适配苹果特有的 16KB 物理页边界对齐与 AMFI 代码签名要求；
+- **系统调用与运行时**：剥离 Windows 依赖，基于 Darwin 内核的 `svc #0x80` 裸系统调用实现自包含的最小运行时。
 
-macOS Apple Silicon（Darwin ARM64）代表了现代个人计算平台最严苛、最主流的软硬件体系之一：
-- 它采用了与 x86 完全不同的 **AArch64 RISC 架构**（固定 32 位指令长度、Load/Store 架构、AAPCS64 调用规约）；
-- 它强制执行极其严格的现代操作系统安全策略：**强制 16KB 物理页边界对齐**、**Apple Mobile File Integrity (AMFI) 内核级强制代码签名**；
-- 它的二进制容器为 **64 位 Mach-O**，动态加载器为 dyld，系统调用使用类 BSD 语义与 `svc #0x80` 陷阱机制。
-
-在 macOS ARM64 上完整复现 BitKindle，不仅是对自举编译思想跨架构普适性的终极检验，更提供了一套从裸机机器码到 Mach-O 现代可执行程序的教科书级工程示范。
+通过在 macOS 上复现 BitKindle 的自举链条，我们希望能为关注底层编译原理与系统级编程的开发者提供一份针对 Apple Silicon 平台的参考实现。
 
 ---
 
